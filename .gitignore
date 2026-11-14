@@ -1,0 +1,18 @@
+# .NET build and publish output
+[Bb]in/
+[Oo]bj/
+[Pp]ublish/
+[Aa]rtifacts/
+
+# Compiled binaries, debug symbols, and NuGet packages
+*.[Dd][Ll][Ll]
+*.[Ee][Xx][Ee]
+*.pdb
+*.so
+*.dylib
+*.lib
+*.a
+*.o
+*.obj
+*.nupkg
+*.snupkg
