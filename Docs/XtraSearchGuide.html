@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>XtraSearch · Search guide</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #0c1119;
+      --surface: #171d27;
+      --border: #303a49;
+      --text: #e2e8f0;
+      --muted: #a6b8cf;
+      --accent: #6ad1ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0 auto;
+      padding: 2rem clamp(1rem, 4vw, 3rem);
+      max-width: 70rem;
+      background: var(--background);
+      color: var(--text);
+      font: 1rem/1.65 "Segoe UI", system-ui, sans-serif;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    .brand { font-size: 1.45rem; font-weight: 650; }
+    .language { display: flex; gap: .4rem; }
+    .language a {
+      padding: .3rem .7rem;
+      border: 1px solid var(--border);
+      border-radius: .35rem;
+      text-decoration: none;
+      color: var(--text);
+      background: #202b3a;
+    }
+    body:not(:has(#fr:target)) a[href="#en"],
+    body:has(#fr:target) a[href="#fr"] {
+      border-color: var(--accent);
+      background: #123a53;
+      color: var(--accent);
+    }
+    #fr { display: none; }
+    #fr:target { display: block; }
+    #fr:target ~ #en { display: none; }
+    h1, h2, p { margin: 0 0 .65rem; }
+    h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; }
+    h2 { font-size: 1.18rem; color: var(--accent); }
+    .intro { color: var(--muted); max-width: 65ch; }
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+      gap: .85rem;
+      margin-top: 1.6rem;
+    }
+    section {
+      padding: 1.15rem 1.3rem;
+      border: 1px solid var(--border);
+      border-radius: .5rem;
+      background: var(--surface);
+    }
+    ul, ol { padding-left: 1.35rem; margin: 0; }
+    li + li { margin-top: .45rem; }
+    section > :last-child { margin-bottom: 0; }
+    code, kbd {
+      border-radius: .2rem;
+      background: #101722;
+      color: #b4e6ff;
+      padding: .08em .28em;
+      overflow-wrap: anywhere;
+    }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <strong class="brand">XtraSearch</strong>
+    <nav class="language" aria-label="Language / Langue">
+      <a href="#en" lang="en" hreflang="en">English</a>
+      <a href="#fr" lang="fr" hreflang="fr">Français</a>
+    </nav>
+  </header>
+  <main>
+    <article id="fr" lang="fr">
+      <h1>Guide d’utilisation</h1>
+      <p class="intro">Recherchez des fichiers par nom ou par contenu dans les dossiers et les partages réseau que vous sélectionnez.</p>
+      <div class="sections">
+        <section>
+          <h2>Lancer une recherche</h2>
+          <ol>
+            <li>Dans <strong>Look in</strong>, indiquez un dossier ou choisissez-le avec <strong>Browse…</strong>. Séparez les chemins par <code>;</code> et préfixez les exclusions par <code>!</code>. Vous pouvez utiliser une variable comme <code>%TEMP%</code>.</li>
+            <li>Dans <strong>File name</strong>, saisissez <code>*</code> pour tous les fichiers ou <code>*.txt;*.log</code> pour limiter la recherche à deux extensions.</li>
+            <li>Saisissez du texte dans <strong>Containing text</strong>, ou laissez ce champ vide pour chercher uniquement par nom. Lancez avec <strong>Start search</strong> ou <kbd>F5</kbd>.</li>
+          </ol>
+        </section>
+        <section>
+          <h2>Choisir le mode de recherche</h2>
+          <ul>
+            <li><strong>Wildcard</strong> utilise <code>*</code> pour une suite de caractères et <code>?</code> pour un caractère. Un nom simple sans joker ni point peut correspondre à une partie du nom.</li>
+            <li><strong>Plain text</strong> cherche le texte saisi tel quel. <strong>Regex</strong> accepte une expression régulière, par exemple <code>error\s+\d+</code>.</li>
+            <li><strong>Boolean</strong> accepte <code>AND</code>, <code>OR</code>, <code>NOT</code>, les guillemets et les parenthèses. Exemple <code>"connection failed" AND NOT timeout</code>. <strong>Boolean Regex</strong> traite les termes comme des expressions régulières.</li>
+            <li>Les termes peuvent correspondre sur des lignes différentes. Activez <strong>Match Boolean expressions line by line</strong> dans <strong>Options</strong> pour exiger une correspondance sur une seule ligne. <strong>Match case</strong> se règle séparément pour le nom et le contenu.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Affiner les critères</h2>
+          <p><strong>Include subfolders</strong> parcourt les sous-dossiers. <strong>Whole words</strong> limite la recherche de contenu aux mots entiers. Dans <strong>Options</strong>, réglez l’inclusion des fichiers masqués ou système, l’exclusion du contenu binaire et le nombre de workers (<code>0</code> pour le mode automatique).</p>
+          <p>Dans <strong>Size &amp; dates</strong>, les limites de taille sont strictes et exprimées en Ko de 1 024 octets. Saisissez les dates de création ou de modification au format <code>yyyy-MM-dd</code>. Les jours renseignés sont inclus en entier.</p>
+        </section>
+        <section>
+          <h2>Formats pris en charge</h2>
+          <p>La recherche de contenu prend en charge le texte UTF-8, l’Unicode avec marque BOM, les PDF contenant du texte, les fichiers DOCX, XLSX, PPTX et les documents OpenDocument.</p>
+          <p>Activez <strong>Search inside ZIP archives</strong> pour lire les entrées ZIP comme du texte. Les archives imbriquées et la reconnaissance de texte dans les PDF numérisés ne sont pas prises en charge.</p>
+        </section>
+        <section>
+          <h2>Consulter les résultats</h2>
+          <p><strong>Pause</strong> suspend la recherche. <strong>Resume</strong> la reprend. <strong>Stop</strong> ou <kbd>Échap</kbd> l’arrête et conserve les résultats trouvés.</p>
+          <p>Sélectionnez un résultat pour afficher son aperçu. Ouvrez un fichier avec <kbd>Entrée</kbd> ou un double-clic. Utilisez <strong>Folder</strong> pour le localiser, <strong>Copy path</strong> pour copier son chemin et <strong>Search log</strong> pour consulter les erreurs.</p>
+        </section>
+        <section>
+          <h2>Enregistrer ou exporter</h2>
+          <p><strong>Save search</strong> enregistre vos critères. <strong>Open…</strong> les recharge. Dans la liste de résultats, <strong>Export…</strong> produit un fichier CSV ou texte.</p>
+        </section>
+      </div>
+    </article>
+    <article id="en" lang="en">
+      <h1>Search guide</h1>
+      <p class="intro">Find files by name or by the text they contain in the folders and network shares you select.</p>
+      <div class="sections">
+        <section>
+          <h2>Start a search</h2>
+          <ol>
+            <li>Enter a folder in <strong>Look in</strong> or select it with <strong>Browse…</strong>. Separate paths with <code>;</code> and prefix exclusions with <code>!</code>. Environment variables such as <code>%TEMP%</code> are supported.</li>
+            <li>In <strong>File name</strong>, enter <code>*</code> for all files or <code>*.txt;*.log</code> to limit the search to two extensions.</li>
+            <li>Enter text in <strong>Containing text</strong> or leave it blank to search by name alone. Choose <strong>Start search</strong> or press <kbd>F5</kbd>.</li>
+          </ol>
+        </section>
+        <section>
+          <h2>Choose a matching mode</h2>
+          <ul>
+            <li><strong>Wildcard</strong> uses <code>*</code> for any number of characters and <code>?</code> for one character. A simple name without a wildcard or dot can match part of a file name.</li>
+            <li><strong>Plain text</strong> matches the entered text literally. <strong>Regex</strong> accepts a regular expression such as <code>error\s+\d+</code>.</li>
+            <li><strong>Boolean</strong> accepts <code>AND</code>, <code>OR</code>, <code>NOT</code>, quoted phrases, and parentheses. Try <code>"connection failed" AND NOT timeout</code>. <strong>Boolean Regex</strong> treats terms as regular expressions.</li>
+            <li>Content terms can match across lines. Enable <strong>Match Boolean expressions line by line</strong> in <strong>Options</strong> to require a match on a single line. Set <strong>Match case</strong> separately for file names and content.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Narrow the search</h2>
+          <p><strong>Include subfolders</strong> searches nested folders. <strong>Whole words</strong> limits content matches to whole words. In <strong>Options</strong>, control hidden and system files, binary content, and parallel search workers (<code>0</code> for automatic).</p>
+          <p>In <strong>Size &amp; dates</strong>, size limits are exclusive and use KB of 1,024 bytes. Enter creation or modification dates as <code>yyyy-MM-dd</code>. The specified dates include the entire day.</p>
+        </section>
+        <section>
+          <h2>Supported formats</h2>
+          <p>Content search supports UTF-8, BOM-marked Unicode, PDFs with embedded text, DOCX, XLSX, PPTX, and OpenDocument files.</p>
+          <p>Enable <strong>Search inside ZIP archives</strong> to read ZIP entries as text. Nested archives and OCR for scanned PDFs are unsupported.</p>
+        </section>
+        <section>
+          <h2>Review results</h2>
+          <p><strong>Pause</strong> suspends the search. <strong>Resume</strong> continues it. <strong>Stop</strong> or <kbd>Esc</kbd> ends the search and keeps results found so far.</p>
+          <p>Select a result to preview it. Open a file with <kbd>Enter</kbd> or a double-click. Use <strong>Folder</strong> to locate it, <strong>Copy path</strong> to copy its path, and <strong>Search log</strong> to review errors.</p>
+        </section>
+        <section>
+          <h2>Save or export</h2>
+          <p><strong>Save search</strong> stores your criteria. <strong>Open…</strong> loads them again. Choose <strong>Export…</strong> in the results pane to write the result list to a CSV or text file.</p>
+        </section>
+      </div>
+    </article>
+  </main>
+</body>
+</html>

@@ -283,14 +283,36 @@ public partial class MainViewModel : ObservableObject
         PreviewTitle = "File preview"; PreviewText = "Select a result to see its matching lines or a text preview."; Status = "Ready";
     }
 
+    /// <summary>Extracts the current guide beside the executable and opens it in the default browser.</summary>
     [RelayCommand]
-    private void Help() => MessageBox.Show(
-        "FILE NAMES\nUse * for all files, *.txt;*.log for multiple patterns, or choose Regex. A name without wildcards finds partial names.\n\n" +
-        "LOCATIONS\nSeparate folders or files with semicolons. Prefix an excluded path with !. Environment variables such as %TEMP% are supported.\n\n" +
-        "CONTENT\nPlain text, Regex, Boolean and Boolean Regex are available. Boolean supports uppercase AND, OR, NOT, REGEX, quoted phrases and parentheses; adjacent terms imply AND. By default terms may appear on different lines.\n\n" +
-        "FORMATS\nUTF-8 and BOM-marked Unicode, PDF, DOCX, XLSX, PPTX and OpenDocument text. ZIP entries are searched as text when enabled. PDF previews use one page per numbered line.\n\n" +
-        "FILTERS\nSize limits are strict, in KB (1024 bytes). Dates use yyyy-MM-dd and include the entire selected day. Directory links are skipped to prevent cycles.\n\n" +
-        "SHORTCUTS\nF5 search · Escape stop · Enter or double-click opens the selected file.\n\n" +
-        "Advanced proximity/fuzzy expressions, OCR, legacy Office, email containers and indexing are outside this core search edition.",
-        "XtraSearch · Search guide", MessageBoxButton.OK, MessageBoxImage.Information);
+    private void Help()
+    {
+        const string guideName = "XtraSearchGuide.html";
+        try
+        {
+            var executableDirectory = Path.GetDirectoryName(Environment.ProcessPath) ?? AppContext.BaseDirectory;
+            var guidePath = Path.Combine(executableDirectory, guideName);
+            using var resource = typeof(MainViewModel).Assembly.GetManifestResourceStream(guideName)
+                ?? throw new InvalidOperationException("The embedded search guide is missing.");
+
+            var temporaryPath = Path.Combine(executableDirectory, $".{guideName}.{Guid.NewGuid():N}.tmp");
+            try
+            {
+                using (var output = new FileStream(temporaryPath, FileMode.CreateNew, FileAccess.Write))
+                    resource.CopyTo(output);
+
+                File.Move(temporaryPath, guidePath, overwrite: true);
+            }
+            finally
+            {
+                File.Delete(temporaryPath);
+            }
+
+            ShellOpen(guidePath);
+        }
+        catch (Exception exception)
+        {
+            Status = $"Could not extract the search guide: {exception.Message}";
+        }
+    }
 }

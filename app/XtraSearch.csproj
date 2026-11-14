@@ -6,16 +6,19 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>XtraSearch</AssemblyName>
-    <Version>1.0.1</Version>
+    <ApplicationIcon>Assets/XtraSearch.ico</ApplicationIcon>
+    <Version>1.0.2</Version>
     <RootNamespace>XtraSearch</RootNamespace>
     <UseSharedCompilation>false</UseSharedCompilation>
-    <CscToolPath>$(MSBuildToolsPath)/Roslyn/bincore</CscToolPath>
-    <CscToolExe>csc.exe</CscToolExe>
+    <CscToolPath Condition="'$(UseLocalCompilerAdapter)' != 'false'">$(MSBuildToolsPath)/Roslyn/bincore</CscToolPath>
+    <CscToolExe Condition="'$(UseLocalCompilerAdapter)' != 'false'">csc.exe</CscToolExe>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="build-tools/**/*.cs" />
+    <Resource Include="Assets/XtraSearch.ico" />
+    <EmbeddedResource Include="../Docs/XtraSearchGuide.html" LogicalName="XtraSearchGuide.html" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="PdfPig" Version="0.1.15" />
   </ItemGroup>
-  <UsingTask TaskName="Microsoft.CodeAnalysis.BuildTasks.Csc" AssemblyFile="$(MSBuildProjectDirectory)/build-tools/XtraSearch.Compiler.dll" Override="true" />
+  <UsingTask TaskName="Microsoft.CodeAnalysis.BuildTasks.Csc" AssemblyFile="$(MSBuildProjectDirectory)/build-tools/XtraSearch.Compiler.dll" Override="true" Condition="'$(UseLocalCompilerAdapter)' != 'false'" />
 </Project>
