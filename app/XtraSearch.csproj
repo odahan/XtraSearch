@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>XtraSearch</AssemblyName>
+    <Version>1.0.1</Version>
     <RootNamespace>XtraSearch</RootNamespace>
     <UseSharedCompilation>false</UseSharedCompilation>
     <CscToolPath>$(MSBuildToolsPath)/Roslyn/bincore</CscToolPath>
