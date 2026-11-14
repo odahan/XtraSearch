@@ -1,0 +1,129 @@
+{
+  "id": "ev_f47f4922f0f9e61e851ea998c7c95c58bbfeefcb09a94dc27439f3aa5c91dab7",
+  "subject": {
+    "kind": "capture",
+    "sha256": "56428a0bbb054f1b4a9d4fb221aa3c008b1a7579090d14a246294107f05acb66",
+    "name": "dotnet.exe"
+  },
+  "operation": "runtime_walkthrough_record",
+  "params": {
+    "argument_count": 6,
+    "event_count": 0,
+    "executable_name": "dotnet.exe",
+    "sandbox_requested": false,
+    "timeout_ms": 60000,
+    "watched_path_count": 0
+  },
+  "result": {
+    "cleanup": {
+      "process_group": "verified",
+      "temporary_root": "none"
+    },
+    "events": [],
+    "exit": {
+      "code": 1,
+      "finalized_with": null,
+      "leader_pid": null,
+      "reason": "exited"
+    },
+    "filesystem": null,
+    "limitations": [
+      {
+        "code": "no_terminal",
+        "message": "There's no terminal capture on Windows: the output was read through pipes, so a program that draws a full-screen terminal interface or colours its output looks different, and its error output follows its normal output instead of being interleaved."
+      },
+      {
+        "code": "job_object",
+        "message": "Every process the program started was ended with its Job Object, which the system empties when the run ends."
+      }
+    ],
+    "manifest": {
+      "architecture": "x86_64",
+      "argument_count": 6,
+      "completed_at_unix_ms": 1794681521795,
+      "executable_name": "dotnet.exe",
+      "executable_sha256": "56428a0bbb054f1b4a9d4fb221aa3c008b1a7579090d14a246294107f05acb66",
+      "platform": "windows",
+      "pty_backend": "pipes",
+      "run_id": "1a1db5ac2dc-5264",
+      "sandbox": {
+        "available": false,
+        "kind": "none",
+        "reason": "no sandbox on this host",
+        "used": false
+      },
+      "started_at_unix_ms": 1794681520860
+    },
+    "normalization": {
+      "replacements": {
+        "paths": 0,
+        "patterns": 0,
+        "pids": 0,
+        "ports": 0,
+        "times": 0
+      },
+      "settings": {
+        "paths": false,
+        "patterns": [],
+        "pids": true,
+        "ports": true,
+        "time_step_ms": 10
+      }
+    },
+    "settlement": {
+      "status": "settled"
+    },
+    "still_unknown": [],
+    "terminal": {
+      "alternate_screen": false,
+      "columns": 80,
+      "cursor_col": 0,
+      "cursor_row": 0,
+      "lines": [
+        "E:\\XtraSearch\\app\\XtraSearch.csproj : warning NU1900: Une erreur s’est produite lors de l’obtention des données de vulnérabilité du package : Impossible de charger l'index de service pour la source https://api.nuget.org/v3/index.json.",
+        "C:\\Program Files\\dotnet\\sdk\\11.0.100\\Roslyn\\Microsoft.CSharp.Core.targets(97,5): error MSB3883: Exception inattendue :  [E:\\XtraSearch\\app\\XtraSearch.csproj]",
+        "C:\\Program Files\\dotnet\\sdk\\11.0.100\\Roslyn\\Microsoft.CSharp.Core.targets(97,5): error : Access to the path '\\\\.\\pipe\\LOCAL\\dotnet_2ba47d3f59864374b8757f8e465589e3' is denied. [E:\\XtraSearch\\app\\XtraSearch.csproj]",
+        "",
+        "ÉCHEC de la build.",
+        "",
+        "E:\\XtraSearch\\app\\XtraSearch.csproj : warning NU1900: Une erreur s’est produite lors de l’obtention des données de vulnérabilité du package : Impossible de charger l'index de service pour la source https://api.nuget.org/v3/index.json.",
+        "C:\\Program Files\\dotnet\\sdk\\11.0.100\\Roslyn\\Microsoft.CSharp.Core.targets(97,5): error MSB3883: Exception inattendue :  [E:\\XtraSearch\\app\\XtraSearch.csproj]",
+        "C:\\Program Files\\dotnet\\sdk\\11.0.100\\Roslyn\\Microsoft.CSharp.Core.targets(97,5): error : Access to the path '\\\\.\\pipe\\LOCAL\\dotnet_2ba47d3f59864374b8757f8e465589e3' is denied. [E:\\XtraSearch\\app\\XtraSearch.csproj]",
+        "    1 Avertissement(s)",
+        "    2 Erreur(s)",
+        "",
+        "Temps écoulé 00:00:00.14"
+      ],
+      "output_bytes": 1334,
+      "output_truncated": false,
+      "rows": 24
+    },
+    "truncated": false
+  },
+  "summary": "Ran dotnet.exe (exited): exit 1. Terminal 80×24; 1334 bytes of output.",
+  "confidence": "observed",
+  "authority": "our-run",
+  "environment": {
+    "clean_room": false,
+    "engine": "program-runs",
+    "engine_version": "0.6.1",
+    "host": "windows-x86_64"
+  },
+  "limitations": [
+    {
+      "code": "no_terminal",
+      "message": "There's no terminal capture on Windows: the output was read through pipes, so a program that draws a full-screen terminal interface or colours its output looks different, and its error output follows its normal output instead of being interleaved."
+    },
+    {
+      "code": "job_object",
+      "message": "Every process the program started was ended with its Job Object, which the system empties when the run ends."
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 1,
+    "total": 1
+  },
+  "locations": [],
+  "links": []
+}

@@ -1,0 +1,590 @@
+{
+  "id": "ev_825eb251e007950e904d482b62feb99367f1a4380600bbd2130e8d6cc657badb",
+  "subject": {
+    "kind": "pe",
+    "sha256": "0ec997fb2832cf7c1b7766ea03b27fe94f24e7e58353588fb15cdb470611c19f",
+    "name": "SearchLib.dll"
+  },
+  "operation": "native_strings_find",
+  "params": {
+    "case_sensitive": false,
+    "limit": 45,
+    "mode": "regex",
+    "offset": 0,
+    "pattern": "thread|buffer|regex|boolean|plain|case|whole|CreateSearch"
+  },
+  "result": {
+    "matches": [
+      {
+        "address": "0x1807a56e0",
+        "references": [
+          {
+            "from": "0x18013a621",
+            "function": "sub_18013a240"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Setting containing text regexp on script parms"
+      },
+      {
+        "address": "0x1807a5830",
+        "references": [
+          {
+            "from": "0x18013a726",
+            "function": "sub_18013a240"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Setting file name regexp on script parms"
+      },
+      {
+        "address": "0x1807a6180",
+        "references": [],
+        "section": ".rdata",
+        "text": "Failure during CNotificationDelayMgr::CMonitorThread::run()"
+      },
+      {
+        "address": "0x1807b9010",
+        "references": [
+          {
+            "from": "0x18016f6f1",
+            "function": "sub_18016f650"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Checking SQLite threading"
+      },
+      {
+        "address": "0x1807c3f30",
+        "references": [
+          {
+            "from": "0x180197800",
+            "function": "sub_180197750"
+          },
+          {
+            "from": "0x18019e751",
+            "function": "sub_18019e720"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Testing for thread safety"
+      },
+      {
+        "address": "0x1807c4228",
+        "references": [
+          {
+            "from": "0x180197b9a",
+            "function": "sub_180197b30"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Checking for master thread"
+      },
+      {
+        "address": "0x1807c4260",
+        "references": [
+          {
+            "from": "0x180197caa",
+            "function": "sub_180197b30"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Starting index db thread"
+      },
+      {
+        "address": "0x1807c5108",
+        "references": [],
+        "section": ".rdata",
+        "text": " ORDER BY IFNULL(FileDisplayNm, FileKeyNm) COLLATE NOCASE "
+      },
+      {
+        "address": "0x1807c5148",
+        "references": [],
+        "section": ".rdata",
+        "text": " ORDER BY Folder.FolderPathDs COLLATE NOCASE "
+      },
+      {
+        "address": "0x1807cfc80",
+        "references": [],
+        "section": ".rdata",
+        "text": "REINDEXEDESCAPEACHECKEYBEFOREIGNOREGEXPLAINSTEADDATABASELECTABLEFTHENDEFERRABLELSEXCLUDELETEMPORARYISNULLSAVEPOINTERSECTIESNOTNULLIKEXCEPTRANSACTIONATURALTERAISEXCLUSIVEXISTSCONSTRAINTOFFSETRIGGERANGENERATEDETACHAVINGLOBEGINNEREFERENCESUNIQUERYWITHOUTERELEASEATTACHBETWEENOTHINGROUPSCASCADEFAULTCASECOLLATECREATECURRENT_DATEIMMEDIATEJOINSERTMATCHPLANALYZEPRAGMATERIALIZEDEFERREDISTINCTUPDATEVALUESVIRTUALWAYSWHENWHERECURSIVEABORTAFTERENAMEANDROPARTITIONAUTOINCREMENTCASTCOLUMNCOMMITCONFLICTCROSSCURRENT_TIMESTAMPRECEDINGFAILASTFILTEREPLACEFIRSTFOLLOWINGFROMFULLIMITIFORDERESTRICTOTHERSOVERETURNINGRIGHTROLLBACKROWSUNBOUNDEDUNIONUSINGVACUUMVIEWINDOWBYINITIALLYPRIMARY"
+      },
+      {
+        "address": "0x1807d4e24",
+        "references": [
+          {
+            "from": "0x1807ce3c0",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "regexp"
+      },
+      {
+        "address": "0x1807d4fe8",
+        "references": [
+          {
+            "from": "0x1807cef88",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "case_sensitive_like"
+      },
+      {
+        "address": "0x1807d53f0",
+        "references": [
+          {
+            "from": "0x1807cf498",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "threads"
+      },
+      {
+        "address": "0x1807d59e8",
+        "references": [
+          {
+            "from": "0x1809f0398",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "FlushFileBuffers"
+      },
+      {
+        "address": "0x1807d65f8",
+        "references": [
+          {
+            "from": "0x1807d01e0",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "DEFAULT_WORKER_THREADS=0"
+      },
+      {
+        "address": "0x1807d67d0",
+        "references": [
+          {
+            "from": "0x1807d0270",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "MAX_WORKER_THREADS=8"
+      },
+      {
+        "address": "0x1807d6818",
+        "references": [
+          {
+            "from": "0x1807d0290",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "THREADSAFE=1"
+      },
+      {
+        "address": "0x1807d7368",
+        "references": [
+          {
+            "from": "0x1807d0d70",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "Explain"
+      },
+      {
+        "address": "0x1807d8a80",
+        "references": [
+          {
+            "from": "0x180200ae6",
+            "function": "sub_180200820"
+          }
+        ],
+        "section": ".rdata",
+        "text": "UPDATE \"%w\".sqlite_master SET sql = sqlite_rename_table(%Q, type, name, sql, %Q, %Q, %d) WHERE (type!='index' OR tbl_name=%Q COLLATE nocase)AND   name NOT LIKE 'sqliteX_%%' ESCAPE 'X'"
+      },
+      {
+        "address": "0x1807d8b40",
+        "references": [
+          {
+            "from": "0x180200b1c",
+            "function": "sub_180200820"
+          }
+        ],
+        "section": ".rdata",
+        "text": "UPDATE %Q.sqlite_master SET tbl_name = %Q, name = CASE WHEN type='table' THEN %Q WHEN name LIKE 'sqliteX_autoindex%%' ESCAPE 'X'      AND type='index' THEN 'sqlite_autoindex_' || %Q || substr(name,%d+18) ELSE name END WHERE tbl_name=%Q COLLATE nocase AND (type='table' OR type='index' OR type='trigger');"
+      },
+      {
+        "address": "0x1807d8cd0",
+        "references": [
+          {
+            "from": "0x180200b8e",
+            "function": "sub_180200820"
+          }
+        ],
+        "section": ".rdata",
+        "text": "UPDATE sqlite_temp_schema SET sql = sqlite_rename_table(%Q, type, name, sql, %Q, %Q, 1), tbl_name = CASE WHEN tbl_name=%Q COLLATE nocase AND   sqlite_rename_test(%Q, sql, type, name, 1, 'after rename', 0) THEN %Q ELSE tbl_name END WHERE type IN ('view', 'trigger')"
+      },
+      {
+        "address": "0x1807d8fc0",
+        "references": [
+          {
+            "from": "0x18020036f",
+            "function": "sub_1801ffe00"
+          }
+        ],
+        "section": ".rdata",
+        "text": "SELECT CASE WHEN quick_check GLOB 'CHECK*' THEN raise(ABORT,'CHECK constraint failed') WHEN quick_check GLOB 'non-* value in*' THEN raise(ABORT,'type mismatch on DEFAULT') ELSE raise(ABORT,'NOT NULL constraint failed') END  FROM pragma_quick_check(%Q,%Q) WHERE quick_check GLOB 'CHECK*' OR quick_check GLOB 'NULL*' OR quick_check GLOB 'non-* value in*'"
+      },
+      {
+        "address": "0x1807d93e0",
+        "references": [
+          {
+            "from": "0x1801ff95c",
+            "function": "sub_1801ff866"
+          }
+        ],
+        "section": ".rdata",
+        "text": "UPDATE \"%w\".sqlite_master SET sql = sqlite_drop_column(%d, sql, %d) WHERE (type=='table' AND tbl_name=%Q COLLATE nocase)"
+      },
+      {
+        "address": "0x1807db924",
+        "references": [
+          {
+            "from": "0x1801d2cfb",
+            "function": "sub_1801d1fa0"
+          },
+          {
+            "from": "0x1801edc34",
+            "function": "sub_1801eda09"
+          }
+        ],
+        "section": ".rdata",
+        "text": "NOCASE"
+      },
+      {
+        "address": "0x1807dbe50",
+        "references": [],
+        "section": ".rdata",
+        "text": "explain"
+      },
+      {
+        "address": "0x1807e1a90",
+        "references": [
+          {
+            "from": "0x18027e92b",
+            "function": "sub_18027e890"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Starting cache thread"
+      },
+      {
+        "address": "0x1807e1ac0",
+        "references": [
+          {
+            "from": "0x18027e98a",
+            "function": "sub_18027e890"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Starting cache mgr thread"
+      },
+      {
+        "address": "0x1807eda60",
+        "references": [
+          {
+            "from": "0x180284226",
+            "function": "sub_1802840f0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "SELECT FolderId FROM Folder WHERE FolderMkId = ? AND FolderMkDs = ? COLLATE NOCASE"
+      },
+      {
+        "address": "0x1807fefb0",
+        "references": [
+          {
+            "from": "0x180294d24",
+            "function": "sub_180294d00"
+          },
+          {
+            "from": "0x180299037",
+            "function": "sub_180299010"
+          }
+        ],
+        "section": ".rdata",
+        "text": "storecase"
+      },
+      {
+        "address": "0x1807ffa38",
+        "references": [
+          {
+            "from": "0x1802922b6",
+            "function": "sub_180291fb0"
+          }
+        ],
+        "section": ".rdata",
+        "text": ":regex:recycl.*s-1-5-"
+      },
+      {
+        "address": "0x180804b98",
+        "references": [
+          {
+            "from": "0x1802b226c",
+            "function": "sub_1802b1ec0"
+          },
+          {
+            "from": "0x1802fa8a9",
+            "function": "sub_1802fa840"
+          },
+          {
+            "from": "0x1802fdd0c",
+            "function": "sub_1802fdc80"
+          },
+          {
+            "from": "0x180300225",
+            "function": "sub_1803001c0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "IndexThreading"
+      },
+      {
+        "address": "0x180805260",
+        "references": [
+          {
+            "from": "0x1802b7a24",
+            "function": "sub_1802b78c0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Creating boolean expression"
+      },
+      {
+        "address": "0x180805530",
+        "references": [
+          {
+            "from": "0x1802be03f",
+            "function": "sub_1802bdfc0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Creating boolean query for expression"
+      },
+      {
+        "address": "0x1808064e8",
+        "references": [
+          {
+            "from": "0x1802c414b",
+            "function": "sub_1802c4090"
+          },
+          {
+            "from": "0x1802c90bf",
+            "function": "sub_1802c9010"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Master thread DB"
+      },
+      {
+        "address": "0x180807500",
+        "references": [
+          {
+            "from": "0x1802cce25",
+            "function": "sub_1802cce10"
+          }
+        ],
+        "section": ".rdata",
+        "text": "CustomFreqProxTermsWriterPerThread"
+      },
+      {
+        "address": "0x1808077c0",
+        "references": [
+          {
+            "from": "0x1802ccd65",
+            "function": "sub_1802ccd50"
+          }
+        ],
+        "section": ".rdata",
+        "text": "CustomDocInverterPerThread"
+      },
+      {
+        "address": "0x1808093b0",
+        "references": [
+          {
+            "from": "0x1802e0a21",
+            "function": "sub_1802e0870"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Checking case searching support"
+      },
+      {
+        "address": "0x18080ae68",
+        "references": [
+          {
+            "from": "0x1802f19d0",
+            "function": "sub_1802f19a0"
+          },
+          {
+            "from": "0x1802fbd62",
+            "function": "sub_1802fba10"
+          }
+        ],
+        "section": ".rdata",
+        "text": "idxthread_"
+      },
+      {
+        "address": "0x18080aed0",
+        "references": [
+          {
+            "from": "0x1807166bf",
+            "function": "sub_1807165d0"
+          },
+          {
+            "from": "0x18071683c",
+            "function": "sub_180716810"
+          },
+          {
+            "from": "0x180716a4d",
+            "function": "sub_180716a20"
+          },
+          {
+            "from": "0x180716c25",
+            "function": "sub_180716bf0"
+          },
+          {
+            "from": "0x180716e85",
+            "function": "sub_180716e50"
+          },
+          {
+            "from": "0x1807170f5",
+            "function": "sub_1807170c0"
+          },
+          {
+            "from": "0x18071749a",
+            "function": "sub_1807173c0"
+          },
+          {
+            "from": "0x180717625",
+            "function": "sub_1807175f0"
+          },
+          {
+            "from": "0x18071783d",
+            "function": "sub_180717810"
+          },
+          {
+            "from": "0x1807179ff",
+            "function": "sub_1807179d0"
+          },
+          {
+            "from": "0x180717c5f",
+            "function": "sub_180717c30"
+          },
+          {
+            "from": "0x180717ecf",
+            "function": "sub_180717ea0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "E:\\build\\flpro\\build\\Buildflp20260908115911_3566\\checkout\\src\\FileLocatorPro\\IndexLib\\IndexerThreadData.cpp"
+      },
+      {
+        "address": "0x18080b4a0",
+        "references": [
+          {
+            "from": "0x1802f7241",
+            "function": "sub_1802f71f0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Adding new thread"
+      },
+      {
+        "address": "0x18080b4d0",
+        "references": [
+          {
+            "from": "0x1802fb4c6",
+            "function": "sub_1802fb390"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Check threads for folder action"
+      },
+      {
+        "address": "0x18080b990",
+        "references": [
+          {
+            "from": "0x1802fb1bc",
+            "function": "sub_1802faf70"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Check threads for file indexing"
+      },
+      {
+        "address": "0x18080ba40",
+        "references": [
+          {
+            "from": "0x1802fba70",
+            "function": "sub_1802fba10"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Getting result mgr for thread data"
+      },
+      {
+        "address": "0x18080bcf0",
+        "references": [
+          {
+            "from": "0x180301697",
+            "function": "sub_1803014a0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Indexer thread returned unexpected value: %d"
+      },
+      {
+        "address": "0x18080be60",
+        "references": [
+          {
+            "from": "0x18030053f",
+            "function": "sub_1803003d0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Initializing thread data"
+      }
+    ],
+    "total": 287
+  },
+  "summary": "287 strings match \"thread|buffer|regex|boolean|plain|case|whole|CreateSearch\".",
+  "confidence": "observed",
+  "authority": "original-files",
+  "environment": {
+    "clean_room": false,
+    "engine": "builtin",
+    "engine_version": "0.6.1",
+    "host": "windows-x86_64"
+  },
+  "limitations": [
+    {
+      "code": "data_sections_only",
+      "message": "only strings stored in the file are searched (absence is not proof)"
+    }
+  ],
+  "coverage": {
+    "status": "partial",
+    "examined": 45,
+    "total": 287,
+    "next_offset": 45
+  },
+  "locations": [],
+  "links": []
+}

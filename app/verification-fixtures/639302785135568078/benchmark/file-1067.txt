@@ -1,0 +1,2 @@
+A deterministic search fixture 1067.
+needle value

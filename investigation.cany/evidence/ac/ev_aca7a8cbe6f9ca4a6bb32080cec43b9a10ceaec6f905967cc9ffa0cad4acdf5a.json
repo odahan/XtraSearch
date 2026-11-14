@@ -1,0 +1,129 @@
+{
+  "id": "ev_aca7a8cbe6f9ca4a6bb32080cec43b9a10ceaec6f905967cc9ffa0cad4acdf5a",
+  "subject": {
+    "kind": "pe",
+    "sha256": "ca16fa512fb0b46448ce1c8305cbdbbd0e230e7f945647604f3228f9cd83a0b6",
+    "name": "AgentRansack.exe"
+  },
+  "operation": "native_functions_list",
+  "params": {
+    "limit": 8,
+    "offset": 0
+  },
+  "result": {
+    "functions": [
+      {
+        "address": "0x140001000",
+        "blocks": 5,
+        "found_by": "function_starts",
+        "instructions": 22,
+        "name": "sub_140001000",
+        "name_source": "generated",
+        "size": 122,
+        "thunk_of": null
+      },
+      {
+        "address": "0x1400010b0",
+        "blocks": 1,
+        "found_by": "function_starts",
+        "instructions": 8,
+        "name": "sub_1400010b0",
+        "name_source": "generated",
+        "size": 47,
+        "thunk_of": null
+      },
+      {
+        "address": "0x1400010e0",
+        "blocks": 3,
+        "found_by": "function_starts",
+        "instructions": 20,
+        "name": "sub_1400010e0",
+        "name_source": "generated",
+        "size": 100,
+        "thunk_of": null
+      },
+      {
+        "address": "0x140001170",
+        "blocks": 3,
+        "found_by": "function_starts",
+        "instructions": 20,
+        "name": "sub_140001170",
+        "name_source": "generated",
+        "size": 100,
+        "thunk_of": null
+      },
+      {
+        "address": "0x1400011f0",
+        "blocks": 3,
+        "found_by": "function_starts",
+        "instructions": 20,
+        "name": "sub_1400011f0",
+        "name_source": "generated",
+        "size": 100,
+        "thunk_of": null
+      },
+      {
+        "address": "0x140001280",
+        "blocks": 3,
+        "found_by": "function_starts",
+        "instructions": 20,
+        "name": "sub_140001280",
+        "name_source": "generated",
+        "size": 100,
+        "thunk_of": null
+      },
+      {
+        "address": "0x1400012f0",
+        "blocks": 3,
+        "found_by": "function_starts",
+        "instructions": 146,
+        "name": "sub_1400012f0",
+        "name_source": "generated",
+        "size": 669,
+        "thunk_of": null
+      },
+      {
+        "address": "0x140001590",
+        "blocks": 1,
+        "found_by": "function_starts",
+        "instructions": 62,
+        "name": "sub_140001590",
+        "name_source": "generated",
+        "size": 319,
+        "thunk_of": null
+      }
+    ],
+    "total": 5403
+  },
+  "summary": "5403 functions (showing 8).",
+  "confidence": "derived",
+  "authority": "original-files",
+  "environment": {
+    "clean_room": false,
+    "engine": "builtin",
+    "engine_version": "0.6.1",
+    "host": "windows-x86_64"
+  },
+  "limitations": [
+    {
+      "code": "indirect_jumps_unresolved",
+      "message": "99 indirect jumps could not be resolved; code they reach may be missing"
+    },
+    {
+      "code": "stripped_binary",
+      "message": "no local symbols: most function names are generated (sub_…)"
+    },
+    {
+      "code": "static_analysis_only",
+      "message": "functions reached only through computed pointers or at run time may be missing; absence is not proof"
+    }
+  ],
+  "coverage": {
+    "status": "partial",
+    "examined": 8,
+    "total": 5403,
+    "next_offset": 8
+  },
+  "locations": [],
+  "links": []
+}

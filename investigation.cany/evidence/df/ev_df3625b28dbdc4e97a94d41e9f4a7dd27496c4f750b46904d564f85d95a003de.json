@@ -1,0 +1,328 @@
+{
+  "id": "ev_df3625b28dbdc4e97a94d41e9f4a7dd27496c4f750b46904d564f85d95a003de",
+  "subject": {
+    "kind": "pe",
+    "sha256": "0ec997fb2832cf7c1b7766ea03b27fe94f24e7e58353588fb15cdb470611c19f",
+    "name": "SearchLib.dll"
+  },
+  "operation": "native_strings_find",
+  "params": {
+    "case_sensitive": false,
+    "limit": 35,
+    "mode": "regex",
+    "offset": 0,
+    "pattern": "SearchThread|NumThread|ThreadCount|MaxThread|BufferSize|Plain Text|Regular Expression|DOS Expression"
+  },
+  "result": {
+    "matches": [
+      {
+        "address": "0x180815940",
+        "references": [
+          {
+            "from": "0x18035d755",
+            "function": "sub_18035d5c0"
+          },
+          {
+            "from": "0x18035e3fd",
+            "function": "sub_18035e240"
+          }
+        ],
+        "section": ".rdata",
+        "text": "at least one of ramBufferSize and maxBufferedDocs must be enabled"
+      },
+      {
+        "address": "0x180815ac8",
+        "references": [
+          {
+            "from": "0x18035e444",
+            "function": "sub_18035e240"
+          }
+        ],
+        "section": ".rdata",
+        "text": "ramBufferSize "
+      },
+      {
+        "address": "0x180815af0",
+        "references": [
+          {
+            "from": "0x18035e3c9",
+            "function": "sub_18035e240"
+          }
+        ],
+        "section": ".rdata",
+        "text": "ramBufferSize should be > 0.0 MB when enabled"
+      },
+      {
+        "address": "0x180815b50",
+        "references": [
+          {
+            "from": "0x18035e2cf",
+            "function": "sub_18035e240"
+          }
+        ],
+        "section": ".rdata",
+        "text": "setRAMBufferSizeMB "
+      },
+      {
+        "address": "0x180815cb8",
+        "references": [
+          {
+            "from": "0x18035822d",
+            "function": "sub_180358150"
+          }
+        ],
+        "section": ".rdata",
+        "text": "ramBufferSizeMB="
+      },
+      {
+        "address": "0x180859d88",
+        "references": [
+          {
+            "from": "0x180048f5f",
+            "function": "sub_180048e10"
+          },
+          {
+            "from": "0x18004932b",
+            "function": "sub_180049090"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Creating plain text engine"
+      },
+      {
+        "address": "0x180859dc0",
+        "references": [
+          {
+            "from": "0x180048fc9",
+            "function": "sub_180048e10"
+          },
+          {
+            "from": "0x180049393",
+            "function": "sub_180049090"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Setting expression on plain text engine"
+      },
+      {
+        "address": "0x18085a0d0",
+        "references": [
+          {
+            "from": "0x18004a1f1",
+            "function": "sub_180049fa0"
+          },
+          {
+            "from": "0x18006cc8c",
+            "function": "sub_18006c950"
+          },
+          {
+            "from": "0x180147db4",
+            "function": "sub_180147c40"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Usage Error: Can't mix regular expression captures with POSIX matching rules"
+      },
+      {
+        "address": "0x18085a120",
+        "references": [
+          {
+            "from": "0x180049f82",
+            "function": "sub_180049d10"
+          }
+        ],
+        "section": ".rdata",
+        "text": "Invalid regular expression object"
+      },
+      {
+        "address": "0x18085a480",
+        "references": [],
+        "section": ".rdata",
+        "text": "The repeat operator \"*\" cannot start a regular expression."
+      },
+      {
+        "address": "0x18085a4c0",
+        "references": [],
+        "section": ".rdata",
+        "text": "The repeat operator \"?\" cannot start a regular expression."
+      },
+      {
+        "address": "0x18085a500",
+        "references": [],
+        "section": ".rdata",
+        "text": "The repeat operator \"+\" cannot start a regular expression."
+      },
+      {
+        "address": "0x18085a7e0",
+        "references": [],
+        "section": ".rdata",
+        "text": "The \\c and \\C escape sequences are not supported by POSIX basic regular expressions: try the Perl syntax instead."
+      },
+      {
+        "address": "0x18085b0f0",
+        "references": [
+          {
+            "from": "0x18085b570",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "Invalid regular expression."
+      },
+      {
+        "address": "0x18085b2f0",
+        "references": [
+          {
+            "from": "0x18085b5c8",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "Invalid preceding regular expression prior to repetition operator."
+      },
+      {
+        "address": "0x18085b338",
+        "references": [
+          {
+            "from": "0x18085b5d0",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "Premature end of regular expression"
+      },
+      {
+        "address": "0x18085b360",
+        "references": [
+          {
+            "from": "0x18085b5d8",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "Regular expression is too large."
+      },
+      {
+        "address": "0x18085b3a0",
+        "references": [
+          {
+            "from": "0x18085b5e8",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "Empty regular expression."
+      },
+      {
+        "address": "0x18085b3c0",
+        "references": [
+          {
+            "from": "0x18085b5f0",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "The complexity of matching the regular expression exceeded predefined bounds.  Try refactoring the regular expression to make each choice made by the state machine unambiguous.  This exception is thrown to prevent \"eternal\" matches that take an indefinite period time to locate."
+      },
+      {
+        "address": "0x18085b4d8",
+        "references": [
+          {
+            "from": "0x18085b5f8",
+            "function": null
+          }
+        ],
+        "section": ".rdata",
+        "text": "Ran out of stack space trying to match the regular expression."
+      },
+      {
+        "address": "0x18085b690",
+        "references": [
+          {
+            "from": "0x1800608eb",
+            "function": "sub_1800606f0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "A regular expression cannot start with the alternation operator |."
+      },
+      {
+        "address": "0x18085b6e0",
+        "references": [
+          {
+            "from": "0x1800648fa",
+            "function": "sub_180064860"
+          }
+        ],
+        "section": ".rdata",
+        "text": "An invalid combination of regular expression syntax flags was used."
+      },
+      {
+        "address": "0x18085b850",
+        "references": [
+          {
+            "from": "0x180061387",
+            "function": "sub_1800612e0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "  The error occurred while parsing the regular expression fragment: '"
+      },
+      {
+        "address": "0x18085b898",
+        "references": [
+          {
+            "from": "0x180061378",
+            "function": "sub_1800612e0"
+          }
+        ],
+        "section": ".rdata",
+        "text": "  The error occurred while parsing the regular expression: '"
+      },
+      {
+        "address": "0x18085b9d0",
+        "references": [],
+        "section": ".rdata",
+        "text": "Invalid lookbehind assertion encountered in the regular expression."
+      },
+      {
+        "address": "0x180865100",
+        "references": [
+          {
+            "from": "0x1800afa21",
+            "function": "sub_1800af8f0"
+          },
+          {
+            "from": "0x180303a90",
+            "function": "sub_180303670"
+          }
+        ],
+        "section": ".rdata",
+        "text": "ThreadCount"
+      }
+    ],
+    "total": 26
+  },
+  "summary": "26 strings match \"SearchThread|NumThread|ThreadCount|MaxThread|BufferSize|Plain Text|Regular Expression|DOS Expression\".",
+  "confidence": "observed",
+  "authority": "original-files",
+  "environment": {
+    "clean_room": false,
+    "engine": "builtin",
+    "engine_version": "0.6.1",
+    "host": "windows-x86_64"
+  },
+  "limitations": [
+    {
+      "code": "data_sections_only",
+      "message": "only strings stored in the file are searched (absence is not proof)"
+    }
+  ],
+  "coverage": {
+    "status": "complete",
+    "examined": 26,
+    "total": 26
+  },
+  "locations": [],
+  "links": []
+}

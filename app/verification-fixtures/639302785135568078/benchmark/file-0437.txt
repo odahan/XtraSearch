@@ -1,0 +1,2 @@
+A deterministic search fixture 437.
+needle value

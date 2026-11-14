@@ -1,0 +1,2175 @@
+{
+  "nodes": [
+    {
+      "class": "FLPMainFrame_F8E138AA-E4DA-4C42-8E66-6DABF4AFC119",
+      "depth": 0,
+      "frame": {
+        "h": 1002,
+        "w": 1464,
+        "x": 228,
+        "y": 76
+      },
+      "role": "Window",
+      "title": "Agent Ransack [LITE] - Search: \\\\TANKER\\Scans\\ (*.bmp)"
+    },
+    {
+      "class": "BCGPShadowSideWnd",
+      "depth": 1,
+      "frame": {
+        "h": 8,
+        "w": 1480,
+        "x": 220,
+        "y": 1078
+      },
+      "role": "Pane"
+    },
+    {
+      "class": "BCGPShadowSideWnd",
+      "depth": 1,
+      "frame": {
+        "h": 1002,
+        "w": 8,
+        "x": 1692,
+        "y": 76
+      },
+      "role": "Pane"
+    },
+    {
+      "class": "BCGPShadowSideWnd",
+      "depth": 1,
+      "frame": {
+        "h": 8,
+        "w": 1480,
+        "x": 220,
+        "y": 68
+      },
+      "role": "Pane"
+    },
+    {
+      "class": "BCGPShadowSideWnd",
+      "depth": 1,
+      "frame": {
+        "h": 1002,
+        "w": 8,
+        "x": 220,
+        "y": 76
+      },
+      "role": "Pane"
+    },
+    {
+      "class": "BCGPStatusBar:c87c0000:8:10003:10",
+      "depth": 1,
+      "frame": {
+        "h": 21,
+        "w": 1458,
+        "x": 231,
+        "y": 1054
+      },
+      "identifier": "59393",
+      "role": "StatusBar",
+      "title": "Ready"
+    },
+    {
+      "depth": 2,
+      "frame": {
+        "h": 19,
+        "w": 1340,
+        "x": 235,
+        "y": 1056
+      },
+      "role": "Text",
+      "title": "Ready"
+    },
+    {
+      "depth": 2,
+      "frame": {
+        "h": 19,
+        "w": 27,
+        "x": 1577,
+        "y": 1056
+      },
+      "role": "Text",
+      "title": "CAP"
+    },
+    {
+      "depth": 2,
+      "frame": {
+        "h": 19,
+        "w": 32,
+        "x": 1606,
+        "y": 1056
+      },
+      "role": "Text",
+      "title": "NUM"
+    },
+    {
+      "depth": 2,
+      "frame": {
+        "h": 19,
+        "w": 31,
+        "x": 1640,
+        "y": 1056
+      },
+      "role": "Text",
+      "title": "SCRL"
+    },
+    {
+      "class": "BCGPDockBar:c87c0000:8:10003:10",
+      "depth": 1,
+      "frame": {
+        "h": 50,
+        "w": 1458,
+        "x": 231,
+        "y": 102
+      },
+      "identifier": "59419",
+      "role": "Pane"
+    },
+    {
+      "class": "BCGPToolBar:c87c0000:8:10003:10",
+      "depth": 2,
+      "frame": {
+        "h": 26,
+        "w": 408,
+        "x": 231,
+        "y": 126
+      },
+      "identifier": "59392",
+      "role": "Pane"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 241,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 267,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 293,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 319,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 345,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 379,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "enabled": false,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 405,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "enabled": false,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 431,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 465,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 491,
+        "y": 128
+      },
+      "role": "Button",
+      "title": "Hide"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 517,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 551,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 577,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 26,
+        "x": 611,
+        "y": 128
+      },
+      "role": "Button"
+    },
+    {
+      "class": "BCGPToolBar:c87c0000:8:10003:10",
+      "depth": 2,
+      "frame": {
+        "h": 24,
+        "w": 1458,
+        "x": 231,
+        "y": 102
+      },
+      "identifier": "59398",
+      "role": "Pane",
+      "title": "Menu Bar"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 20,
+        "w": 33,
+        "x": 241,
+        "y": 104
+      },
+      "role": "MenuItem",
+      "title": "File"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 20,
+        "w": 35,
+        "x": 274,
+        "y": 104
+      },
+      "role": "MenuItem",
+      "title": "Edit"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 20,
+        "w": 40,
+        "x": 309,
+        "y": 104
+      },
+      "role": "MenuItem",
+      "title": "View"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 20,
+        "w": 50,
+        "x": 349,
+        "y": 104
+      },
+      "role": "MenuItem",
+      "title": "Search"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 20,
+        "w": 44,
+        "x": 399,
+        "y": 104
+      },
+      "role": "MenuItem",
+      "title": "Tools"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 20,
+        "w": 59,
+        "x": 443,
+        "y": 104
+      },
+      "role": "MenuItem",
+      "title": "Window"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 20,
+        "w": 40,
+        "x": 502,
+        "y": 104
+      },
+      "role": "MenuItem",
+      "title": "Help"
+    },
+    {
+      "class": "MDIClient",
+      "depth": 1,
+      "frame": {
+        "h": 902,
+        "w": 1458,
+        "x": 231,
+        "y": 152
+      },
+      "identifier": "59648",
+      "role": "Pane"
+    },
+    {
+      "class": "AfxFrameOrView140u",
+      "depth": 2,
+      "frame": {
+        "h": 870,
+        "w": 1448,
+        "x": 236,
+        "y": 179
+      },
+      "identifier": "65280",
+      "role": "Window",
+      "title": "Scans: *.bmp"
+    },
+    {
+      "class": "AfxMDIFrame140u",
+      "depth": 3,
+      "frame": {
+        "h": 870,
+        "w": 1448,
+        "x": 236,
+        "y": 179
+      },
+      "identifier": "59648",
+      "role": "Pane"
+    },
+    {
+      "class": "ComboBox",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 123,
+        "x": 1556,
+        "y": 186
+      },
+      "identifier": "1377",
+      "role": "ComboBox",
+      "title": "Expert"
+    },
+    {
+      "class": "ComboLBox",
+      "depth": 5,
+      "frame": {
+        "h": 36,
+        "w": 123,
+        "x": 0,
+        "y": 23
+      },
+      "identifier": "ListBox",
+      "role": "List"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 121,
+        "x": 1,
+        "y": 24
+      },
+      "role": "ListItem",
+      "title": "Expert"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 121,
+        "x": 1,
+        "y": 41
+      },
+      "role": "ListItem",
+      "title": "Basic"
+    },
+    {
+      "depth": 5,
+      "frame": {
+        "h": 21,
+        "w": 15,
+        "x": 1663,
+        "y": 187
+      },
+      "identifier": "DropDown",
+      "role": "Button",
+      "title": "Bouton de liste déroulante"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 62,
+        "x": 1554,
+        "y": 214
+      },
+      "identifier": "1036",
+      "role": "Button",
+      "title": "Start"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "enabled": false,
+      "frame": {
+        "h": 23,
+        "w": 60,
+        "x": 1619,
+        "y": 214
+      },
+      "identifier": "1037",
+      "role": "Button",
+      "title": "Stop"
+    },
+    {
+      "class": "Static",
+      "depth": 4,
+      "frame": {
+        "h": 47,
+        "w": 95,
+        "x": 1556,
+        "y": 241
+      },
+      "identifier": "1120",
+      "role": "Text"
+    },
+    {
+      "class": "Static",
+      "depth": 4,
+      "frame": {
+        "h": 18,
+        "w": 90,
+        "x": 247,
+        "y": 213
+      },
+      "identifier": "1168",
+      "role": "Text",
+      "title": "File name:"
+    },
+    {
+      "class": "ComboBox",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 1141,
+        "x": 346,
+        "y": 211
+      },
+      "identifier": "1013",
+      "role": "ComboBox",
+      "title": "File name:",
+      "value": "*.bmp"
+    },
+    {
+      "class": "Edit",
+      "depth": 5,
+      "frame": {
+        "h": 17,
+        "w": 1118,
+        "x": 349,
+        "y": 214
+      },
+      "identifier": "1001",
+      "role": "Edit",
+      "title": "File name:",
+      "value": "*.bmp"
+    },
+    {
+      "class": "ComboLBox",
+      "depth": 5,
+      "frame": {
+        "h": 342,
+        "w": 1141,
+        "x": 0,
+        "y": 23
+      },
+      "identifier": "ListBox",
+      "role": "List",
+      "title": "File name:"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 24
+      },
+      "role": "ListItem",
+      "title": "*.bmp"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 41
+      },
+      "role": "ListItem",
+      "title": "*.tif"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 58
+      },
+      "role": "ListItem",
+      "title": "*.tiff"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 75
+      },
+      "role": "ListItem",
+      "title": "odsign"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 92
+      },
+      "role": "ListItem",
+      "title": "OutroPubMonotée"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 109
+      },
+      "role": "ListItem",
+      "title": "outtonpub2"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 126
+      },
+      "role": "ListItem",
+      "title": "outronpub2"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 143
+      },
+      "role": "ListItem",
+      "title": "*.docx"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 160
+      },
+      "role": "ListItem",
+      "title": "Agents IA .NET utiles et gouvernés"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 177
+      },
+      "role": "ListItem",
+      "title": "livre-blanc"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 194
+      },
+      "role": "ListItem",
+      "title": "3rd wave"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 211
+      },
+      "role": "ListItem",
+      "title": "debug.keystore"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 228
+      },
+      "role": "ListItem",
+      "title": "AppData\\Local\\Xamarin\\Mono for Android\\debug.keystore"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 245
+      },
+      "role": "ListItem",
+      "title": "*.*"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 262
+      },
+      "role": "ListItem",
+      "title": "halluci"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 279
+      },
+      "role": "ListItem",
+      "title": "scarlet"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 296
+      },
+      "role": "ListItem",
+      "title": "focustrite"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 313
+      },
+      "role": "ListItem",
+      "title": "yveline"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 330
+      },
+      "role": "ListItem",
+      "title": "interview"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 347
+      },
+      "role": "ListItem",
+      "title": "*.htm*"
+    },
+    {
+      "depth": 5,
+      "frame": {
+        "h": 21,
+        "w": 15,
+        "x": 1471,
+        "y": 212
+      },
+      "identifier": "DropDown",
+      "role": "Button",
+      "title": "Bouton de liste déroulante"
+    },
+    {
+      "class": "Static",
+      "depth": 4,
+      "frame": {
+        "h": 18,
+        "w": 90,
+        "x": 247,
+        "y": 239
+      },
+      "identifier": "1169",
+      "role": "Text",
+      "title": "Containing text:"
+    },
+    {
+      "class": "ComboBox",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 1141,
+        "x": 346,
+        "y": 237
+      },
+      "identifier": "1089",
+      "role": "ComboBox",
+      "title": "Containing text:"
+    },
+    {
+      "class": "Edit",
+      "depth": 5,
+      "frame": {
+        "h": 17,
+        "w": 1118,
+        "x": 349,
+        "y": 240
+      },
+      "identifier": "1001",
+      "role": "Edit",
+      "title": "Containing text:"
+    },
+    {
+      "class": "ComboLBox",
+      "depth": 5,
+      "frame": {
+        "h": 342,
+        "w": 1141,
+        "x": 0,
+        "y": 23
+      },
+      "identifier": "ListBox",
+      "role": "List",
+      "title": "Containing text:"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 24
+      },
+      "role": "ListItem",
+      "title": "\"7 décisions\""
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 41
+      },
+      "role": "ListItem",
+      "title": "Les 7 décisions"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 58
+      },
+      "role": "ListItem",
+      "title": "skills"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 75
+      },
+      "role": "ListItem",
+      "title": "3rd wave"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 92
+      },
+      "role": "ListItem",
+      "title": "A.I.R."
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 109
+      },
+      "role": "ListItem",
+      "title": "AIRE"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 126
+      },
+      "role": "ListItem",
+      "title": "A.I.R.E."
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 143
+      },
+      "role": "ListItem",
+      "title": "facebook.com"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 160
+      },
+      "role": "ListItem",
+      "title": "gwen"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 177
+      },
+      "role": "ListItem",
+      "title": "panasonic"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 194
+      },
+      "role": "ListItem",
+      "title": "alien"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 211
+      },
+      "role": "ListItem",
+      "title": "R10"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 228
+      },
+      "role": "ListItem",
+      "title": "beepsand"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 245
+      },
+      "role": "ListItem",
+      "title": "absynth"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 262
+      },
+      "role": "ListItem",
+      "title": "massive"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 279
+      },
+      "role": "ListItem",
+      "title": "134-2"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 296
+      },
+      "role": "ListItem",
+      "title": "cross fader"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 313
+      },
+      "role": "ListItem",
+      "title": "kernel.memory"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 330
+      },
+      "role": "ListItem",
+      "title": "Memory.SearchAsync"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 1139,
+        "x": 1,
+        "y": 347
+      },
+      "role": "ListItem",
+      "title": "timber"
+    },
+    {
+      "depth": 5,
+      "frame": {
+        "h": 21,
+        "w": 15,
+        "x": 1471,
+        "y": 238
+      },
+      "identifier": "DropDown",
+      "role": "Button",
+      "title": "Bouton de liste déroulante"
+    },
+    {
+      "class": "Static",
+      "depth": 4,
+      "frame": {
+        "h": 18,
+        "w": 90,
+        "x": 247,
+        "y": 266
+      },
+      "identifier": "1170",
+      "role": "Text",
+      "title": "Look in:"
+    },
+    {
+      "class": "ComboBox",
+      "depth": 4,
+      "frame": {
+        "h": 24,
+        "w": 1051,
+        "x": 346,
+        "y": 265
+      },
+      "identifier": "1088",
+      "role": "ComboBox",
+      "title": "Look in:",
+      "value": "\\\\TANKER\\Scans\\"
+    },
+    {
+      "class": "Edit",
+      "depth": 5,
+      "frame": {
+        "h": 18,
+        "w": 1028,
+        "x": 349,
+        "y": 268
+      },
+      "identifier": "1001",
+      "role": "Edit",
+      "title": "Look in:",
+      "value": "\\\\TANKER\\Scans\\"
+    },
+    {
+      "class": "ComboLBox",
+      "depth": 5,
+      "frame": {
+        "h": 542,
+        "w": 1051,
+        "x": 346,
+        "y": 289
+      },
+      "identifier": "ListBox",
+      "role": "List",
+      "title": "Look in:"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 290
+      },
+      "role": "ListItem",
+      "title": "C:\\;D:\\;E:\\;F:\\;G:\\;Z:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 308
+      },
+      "role": "ListItem",
+      "title": "C:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 326
+      },
+      "role": "ListItem",
+      "title": "D:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 344
+      },
+      "role": "ListItem",
+      "title": "E:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 362
+      },
+      "role": "ListItem",
+      "title": "F:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 380
+      },
+      "role": "ListItem",
+      "title": "G:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 398
+      },
+      "role": "ListItem",
+      "title": "M:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 416
+      },
+      "role": "ListItem",
+      "title": "V:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 434
+      },
+      "role": "ListItem",
+      "title": "Y:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 452
+      },
+      "role": "ListItem",
+      "title": "Z:\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 470
+      },
+      "role": "ListItem",
+      "title": "\\\\TANKER\\Scans\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 488
+      },
+      "role": "ListItem",
+      "title": "\\\\TANKER\\E-Naxos\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 506
+      },
+      "role": "ListItem",
+      "title": "\\\\TANKER\\Documents\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 524
+      },
+      "role": "ListItem",
+      "title": "\\\\TANKER\\Design\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 542
+      },
+      "role": "ListItem",
+      "title": "D:\\Videos\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 560
+      },
+      "role": "ListItem",
+      "title": "\\\\TANKER\\VideosODYT\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 578
+      },
+      "role": "ListItem",
+      "title": "\\\\TANKER\\Transit\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 596
+      },
+      "role": "ListItem",
+      "title": "\\\\TANKER\\Développement\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 614
+      },
+      "role": "ListItem",
+      "title": "e:"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 632
+      },
+      "role": "ListItem",
+      "title": "C:\\Users\\odaha\\Dropbox\\ComptaJD\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 650
+      },
+      "role": "ListItem",
+      "title": "AppData\\Local\\Xamarin\\Mono for Android\\debug.keystore\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 668
+      },
+      "role": "ListItem",
+      "title": "D:\\VideoCoursMAF\\Les Jeudi de l'IA\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 686
+      },
+      "role": "ListItem",
+      "title": "C:\\Users\\odaha\\Dropbox\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 704
+      },
+      "role": "ListItem",
+      "title": "\\\\TANKER\\MusiqueWork\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 722
+      },
+      "role": "ListItem",
+      "title": "E:\\TextAid\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 740
+      },
+      "role": "ListItem",
+      "title": "\\\\TANKER\\Musique\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 758
+      },
+      "role": "ListItem",
+      "title": "E:\\source\\EN2023B\\current202607\\Blog\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 776
+      },
+      "role": "ListItem",
+      "title": "\\\\Nostromo\\Backup\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 794
+      },
+      "role": "ListItem",
+      "title": "C:\\Users\\odaha\\AppData\\"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 18,
+        "w": 1049,
+        "x": 347,
+        "y": 812
+      },
+      "role": "ListItem",
+      "title": "E:\\OD.MidiHub\\"
+    },
+    {
+      "depth": 5,
+      "frame": {
+        "h": 22,
+        "w": 15,
+        "x": 1381,
+        "y": 266
+      },
+      "identifier": "DropDown",
+      "role": "Button",
+      "title": "Bouton de liste déroulante"
+    },
+    {
+      "class": "ComboBox",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 89,
+        "x": 247,
+        "y": 292
+      },
+      "identifier": "1224",
+      "role": "ComboBox",
+      "title": "Look in:"
+    },
+    {
+      "class": "ComboLBox",
+      "depth": 5,
+      "frame": {
+        "h": 70,
+        "w": 89,
+        "x": 472,
+        "y": 417
+      },
+      "identifier": "ListBox",
+      "role": "List"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 87,
+        "x": 473,
+        "y": 418
+      },
+      "role": "ListItem",
+      "title": "Size (byte)"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 87,
+        "x": 473,
+        "y": 435
+      },
+      "role": "ListItem",
+      "title": "Size (kB)"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 87,
+        "x": 473,
+        "y": 452
+      },
+      "role": "ListItem",
+      "title": "Size (MB)"
+    },
+    {
+      "depth": 6,
+      "frame": {
+        "h": 17,
+        "w": 87,
+        "x": 473,
+        "y": 469
+      },
+      "role": "ListItem",
+      "title": "Size (GB)"
+    },
+    {
+      "depth": 5,
+      "frame": {
+        "h": 21,
+        "w": 15,
+        "x": 320,
+        "y": 293
+      },
+      "identifier": "DropDown",
+      "role": "Button",
+      "title": "Bouton de liste déroulante"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 23,
+        "x": 346,
+        "y": 292
+      },
+      "identifier": "1092",
+      "role": "Button",
+      "title": ">"
+    },
+    {
+      "class": "Edit",
+      "depth": 4,
+      "enabled": false,
+      "frame": {
+        "h": 23,
+        "w": 106,
+        "x": 372,
+        "y": 292
+      },
+      "identifier": "1320",
+      "role": "Edit",
+      "title": "Look in:",
+      "value": "0"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 23,
+        "x": 482,
+        "y": 292
+      },
+      "identifier": "1093",
+      "role": "Button",
+      "title": "<"
+    },
+    {
+      "class": "Edit",
+      "depth": 4,
+      "enabled": false,
+      "frame": {
+        "h": 23,
+        "w": 106,
+        "x": 508,
+        "y": 292
+      },
+      "identifier": "1312",
+      "role": "Edit",
+      "title": "Look in:",
+      "value": "0"
+    },
+    {
+      "class": "Static",
+      "depth": 4,
+      "frame": {
+        "h": 18,
+        "w": 56,
+        "x": 623,
+        "y": 295
+      },
+      "identifier": "1172",
+      "role": "Text",
+      "title": "Modified:"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 39,
+        "x": 681,
+        "y": 292
+      },
+      "identifier": "1094",
+      "role": "Button",
+      "title": "After:"
+    },
+    {
+      "class": "Edit",
+      "depth": 4,
+      "enabled": false,
+      "frame": {
+        "h": 23,
+        "w": 358,
+        "x": 723,
+        "y": 292
+      },
+      "identifier": "1303",
+      "role": "Edit",
+      "title": "Modified:",
+      "value": "01/10/2024"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 27,
+        "x": 1081,
+        "y": 292
+      },
+      "identifier": "1294",
+      "role": "Button"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 45,
+        "x": 1114,
+        "y": 292
+      },
+      "identifier": "1095",
+      "role": "Button",
+      "title": "Before:"
+    },
+    {
+      "class": "Edit",
+      "depth": 4,
+      "enabled": false,
+      "frame": {
+        "h": 23,
+        "w": 357,
+        "x": 1162,
+        "y": 292
+      },
+      "identifier": "1100",
+      "role": "Edit",
+      "title": "Modified:",
+      "value": "07/12/2022"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 23,
+        "w": 26,
+        "x": 1520,
+        "y": 292
+      },
+      "identifier": "1290",
+      "role": "Button"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 24,
+        "w": 27,
+        "x": 1493,
+        "y": 209
+      },
+      "identifier": "1125",
+      "role": "Button"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 24,
+        "w": 27,
+        "x": 1520,
+        "y": 209
+      },
+      "identifier": "1238",
+      "role": "Button"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 24,
+        "w": 27,
+        "x": 1493,
+        "y": 235
+      },
+      "identifier": "1275",
+      "role": "Button"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 24,
+        "w": 27,
+        "x": 1520,
+        "y": 235
+      },
+      "identifier": "1082",
+      "role": "Button"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 20,
+        "w": 83,
+        "x": 1403,
+        "y": 265
+      },
+      "identifier": "1025",
+      "role": "Button",
+      "title": "Subfolders"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 24,
+        "w": 27,
+        "x": 1493,
+        "y": 263
+      },
+      "identifier": "1032",
+      "role": "Button"
+    },
+    {
+      "class": "Button",
+      "depth": 4,
+      "frame": {
+        "h": 24,
+        "w": 27,
+        "x": 1520,
+        "y": 263
+      },
+      "identifier": "1143",
+      "role": "Button"
+    },
+    {
+      "class": "BCGPTabWnd:c87c0000:8:10003:10",
+      "depth": 4,
+      "frame": {
+        "h": 151,
+        "w": 1315,
+        "x": 238,
+        "y": 181
+      },
+      "identifier": "102",
+      "role": "Tab",
+      "value": "Main"
+    },
+    {
+      "depth": 5,
+      "frame": {
+        "h": 21,
+        "w": 70,
+        "x": 253,
+        "y": 183
+      },
+      "role": "TabItem",
+      "title": "Main"
+    },
+    {
+      "depth": 5,
+      "frame": {
+        "h": 21,
+        "w": 85,
+        "x": 306,
+        "y": 183
+      },
+      "role": "TabItem",
+      "title": "Options"
+    },
+    {
+      "depth": 5,
+      "frame": {
+        "h": 21,
+        "w": 72,
+        "x": 374,
+        "y": 183
+      },
+      "role": "TabItem",
+      "title": "Dates"
+    },
+    {
+      "class": "AfxMDIFrame140u",
+      "depth": 4,
+      "frame": {
+        "h": 712,
+        "w": 1448,
+        "x": 236,
+        "y": 337
+      },
+      "identifier": "59664",
+      "role": "Pane"
+    },
+    {
+      "class": "AfxFrameOrView140u",
+      "depth": 5,
+      "frame": {
+        "h": 708,
+        "w": 1049,
+        "x": 238,
+        "y": 339
+      },
+      "identifier": "59648",
+      "role": "Pane"
+    },
+    {
+      "class": "FileListWnd:c87c0000:8:10003:10",
+      "depth": 6,
+      "frame": {
+        "h": 708,
+        "w": 1049,
+        "x": 238,
+        "y": 339
+      },
+      "identifier": "1000",
+      "role": "ToolBar",
+      "title": "FileListWnd"
+    },
+    {
+      "class": "BCGPGridCtrl:c87c0000:8:10003:10",
+      "depth": 7,
+      "frame": {
+        "h": 708,
+        "w": 1049,
+        "x": 238,
+        "y": 339
+      },
+      "identifier": "34001",
+      "role": "List",
+      "title": "File List View"
+    },
+    {
+      "class": "ScrollBar",
+      "depth": 8,
+      "frame": {
+        "h": 17,
+        "w": 1049,
+        "x": 238,
+        "y": 1030
+      },
+      "identifier": "3",
+      "role": "ScrollBar",
+      "title": "Horizontal",
+      "value": "0"
+    },
+    {
+      "depth": 9,
+      "frame": {
+        "h": 17,
+        "w": 17,
+        "x": 238,
+        "y": 1030
+      },
+      "role": "Button",
+      "title": "Colonne vers la gauche"
+    },
+    {
+      "depth": 9,
+      "frame": {
+        "h": 17,
+        "w": 496,
+        "x": 255,
+        "y": 1030
+      },
+      "role": "Custom",
+      "title": "Position"
+    },
+    {
+      "depth": 9,
+      "frame": {
+        "h": 17,
+        "w": 519,
+        "x": 751,
+        "y": 1030
+      },
+      "role": "Button",
+      "title": "Page vers la droite"
+    },
+    {
+      "depth": 9,
+      "frame": {
+        "h": 17,
+        "w": 17,
+        "x": 1270,
+        "y": 1030
+      },
+      "role": "Button",
+      "title": "Colonne vers la droite"
+    },
+    {
+      "class": "AfxFrameOrView140u",
+      "depth": 5,
+      "frame": {
+        "h": 708,
+        "w": 388,
+        "x": 1294,
+        "y": 339
+      },
+      "identifier": "59649",
+      "role": "Pane"
+    },
+    {
+      "class": "BCGPTabWnd:c87c0000:8:10003:10",
+      "depth": 6,
+      "frame": {
+        "h": 708,
+        "w": 388,
+        "x": 1294,
+        "y": 339
+      },
+      "identifier": "32781",
+      "role": "Tab",
+      "value": "Summary"
+    },
+    {
+      "class": "Button",
+      "depth": 7,
+      "enabled": false,
+      "frame": {
+        "h": 15,
+        "w": 15,
+        "x": 1293,
+        "y": 343
+      },
+      "role": "Button",
+      "title": "Scroll Left"
+    },
+    {
+      "class": "Button",
+      "depth": 7,
+      "enabled": false,
+      "frame": {
+        "h": 15,
+        "w": 15,
+        "x": 1662,
+        "y": 343
+      },
+      "role": "Button",
+      "title": "Scroll Right"
+    },
+    {
+      "class": "BaseTab:c87c0000:8:10003:10",
+      "depth": 7,
+      "frame": {
+        "h": 681,
+        "w": 382,
+        "x": 1297,
+        "y": 363
+      },
+      "identifier": "1000",
+      "role": "ToolBar",
+      "title": "BaseTab"
+    },
+    {
+      "class": "SummaryCtrl:c87c0000:8:10003:10",
+      "depth": 8,
+      "frame": {
+        "h": 681,
+        "w": 382,
+        "x": 1297,
+        "y": 363
+      },
+      "identifier": "1",
+      "role": "ToolBar"
+    },
+    {
+      "class": "ContentViewer:c87c0000:8:10003:10",
+      "depth": 9,
+      "frame": {
+        "h": 681,
+        "w": 382,
+        "x": 1297,
+        "y": 363
+      },
+      "identifier": "1",
+      "role": "List",
+      "title": "Search Statistics"
+    },
+    {
+      "depth": 7,
+      "frame": {
+        "h": 20,
+        "w": 93,
+        "x": 1309,
+        "y": 341
+      },
+      "role": "TabItem",
+      "title": "Summary"
+    },
+    {
+      "depth": 7,
+      "frame": {
+        "h": 20,
+        "w": 63,
+        "x": 1386,
+        "y": 341
+      },
+      "role": "TabItem",
+      "title": "Hits"
+    },
+    {
+      "depth": 7,
+      "frame": {
+        "h": 20,
+        "w": 82,
+        "x": 1433,
+        "y": 341
+      },
+      "role": "TabItem",
+      "title": "Reports"
+    },
+    {
+      "class": "BCGPTabWnd:c87c0000:8:10003:10",
+      "depth": 2,
+      "frame": {
+        "h": 902,
+        "w": 1458,
+        "x": 231,
+        "y": 152
+      },
+      "role": "Tab",
+      "value": "Scans: *.bmp"
+    },
+    {
+      "class": "Button",
+      "depth": 3,
+      "frame": {
+        "h": 15,
+        "w": 15,
+        "x": 1672,
+        "y": 156
+      },
+      "role": "Button",
+      "title": "Active Files"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 21,
+        "w": 150,
+        "x": 231,
+        "y": 154
+      },
+      "role": "TabItem",
+      "title": "Scans: *.bmp"
+    },
+    {
+      "depth": 1,
+      "frame": {
+        "h": 23,
+        "w": 1448,
+        "x": 236,
+        "y": 84
+      },
+      "identifier": "TitleBar",
+      "role": "TitleBar",
+      "title": "Agent Ransack [LITE] - Search: \\\\TANKER\\Scans\\ (*.bmp)"
+    },
+    {
+      "depth": 2,
+      "frame": {
+        "h": 22,
+        "w": 22,
+        "x": 236,
+        "y": 84
+      },
+      "identifier": "SystemMenuBar",
+      "role": "MenuBar",
+      "title": "Barre de menus système"
+    },
+    {
+      "depth": 3,
+      "frame": {
+        "h": 22,
+        "w": 22,
+        "x": 236,
+        "y": 84
+      },
+      "identifier": "Item 1",
+      "role": "MenuItem",
+      "title": "Système"
+    },
+    {
+      "depth": 2,
+      "frame": {
+        "h": 24,
+        "w": 24,
+        "x": 1617,
+        "y": 83
+      },
+      "identifier": "Minimize",
+      "role": "Button",
+      "title": "Réduire"
+    },
+    {
+      "depth": 2,
+      "frame": {
+        "h": 24,
+        "w": 24,
+        "x": 1639,
+        "y": 83
+      },
+      "identifier": "Maximize",
+      "role": "Button",
+      "title": "Agrandir"
+    },
+    {
+      "depth": 2,
+      "frame": {
+        "h": 24,
+        "w": 24,
+        "x": 1661,
+        "y": 83
+      },
+      "identifier": "Close",
+      "role": "Button",
+      "title": "Fermer"
+    }
+  ],
+  "truncated": false,
+  "windows": 1
+}

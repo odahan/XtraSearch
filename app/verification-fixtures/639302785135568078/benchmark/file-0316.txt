@@ -1,0 +1,2 @@
+A deterministic search fixture 316.
+needle value

@@ -1,0 +1,2 @@
+A deterministic search fixture 45.
+needle value

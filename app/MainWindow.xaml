@@ -1,0 +1,121 @@
+<Window x:Class="XtraSearch.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="XtraSearch" Width="1320" Height="860" MinWidth="1050" MinHeight="700" Background="#0C1119" Foreground="#E2E8F0" WindowStartupLocation="CenterScreen">
+ <Window.InputBindings><KeyBinding Key="F5" Command="{Binding StartCommand}"/><KeyBinding Key="Escape" Command="{Binding StopCommand}"/></Window.InputBindings>
+ <Grid Margin="22,16,22,0">
+  <Grid.RowDefinitions><RowDefinition Height="66"/><RowDefinition Height="Auto"/><RowDefinition Height="16"/><RowDefinition Height="*"/><RowDefinition Height="36"/></Grid.RowDefinitions>
+  <DockPanel Grid.Row="0" LastChildFill="False">
+   <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Top">
+    <Border Width="42" Height="42" Background="#123A53" CornerRadius="10" Margin="0,0,13,0"><TextBlock Text="⌕" Foreground="#6AD1FF" FontSize="34" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-5,0,0"/></Border>
+    <StackPanel><TextBlock Text="XtraSearch" FontSize="24" FontWeight="SemiBold"/><TextBlock Text="Find files. Search deeper." Foreground="#899BB3" FontSize="12"/></StackPanel>
+   </StackPanel>
+   <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,5,0,0">
+    <Button Content="New search" Command="{Binding NewSearchCommand}" Margin="0,0,8,0"/>
+    <Button Content="Open…" Command="{Binding LoadSearchCommand}" Margin="0,0,8,0"/>
+    <Button Content="Save search" Command="{Binding SaveSearchCommand}" Margin="0,0,8,0"/>
+    <Button Content="?" Command="{Binding HelpCommand}" ToolTip="Search guide" Padding="13,8"/>
+   </StackPanel>
+  </DockPanel>
+  <Border Grid.Row="1" Background="#171D27" BorderBrush="#303A49" BorderThickness="1" CornerRadius="8" Padding="18,6,18,16">
+   <Grid>
+    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="146"/></Grid.ColumnDefinitions>
+    <TabControl Grid.Column="0" Margin="0,0,20,0" BorderThickness="0" Background="Transparent">
+     <TabItem Header="Main">
+      <Grid Margin="0,13,0,0">
+       <Grid.RowDefinitions><RowDefinition Height="43"/><RowDefinition Height="43"/><RowDefinition Height="43"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+       <Grid.ColumnDefinitions><ColumnDefinition Width="112"/><ColumnDefinition Width="*"/><ColumnDefinition Width="154"/><ColumnDefinition Width="98"/></Grid.ColumnDefinitions>
+       <TextBlock Text="File name" VerticalAlignment="Center"/>
+       <TextBox Grid.Column="1" Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,10,4" ToolTip="For example: *.txt;*.log"/>
+       <ComboBox Grid.Column="2" ItemsSource="{Binding NameModes}" SelectedItem="{Binding NameMode}" Margin="0,4,8,4"/>
+       <CheckBox Grid.Column="3" Content="Match case" IsChecked="{Binding NameCase}" Margin="3,0,0,0"/>
+       <TextBlock Grid.Row="1" Text="Containing text" VerticalAlignment="Center"/>
+       <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,10,4" ToolTip="Leave empty to search by file name only"/>
+       <ComboBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding ContentModes}" SelectedItem="{Binding ContentMode}" Margin="0,4,8,4"/>
+       <CheckBox Grid.Row="1" Grid.Column="3" Content="Match case" IsChecked="{Binding ContentCase}" Margin="3,0,0,0"/>
+       <TextBlock Grid.Row="2" Text="Look in" VerticalAlignment="Center"/>
+       <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Locations, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,8,4" ToolTip="Files or folders separated by ;. Prefix exclusions with !"/>
+       <Button Grid.Row="2" Grid.Column="3" Content="Browse…" Command="{Binding BrowseCommand}" Margin="0,4,0,4" Padding="8,5"/>
+       <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,4,0,0">
+        <CheckBox Content="Include subfolders" IsChecked="{Binding Subfolders}"/>
+        <CheckBox Content="Whole words" IsChecked="{Binding WholeWord}"/>
+        <TextBlock Text="Separate name patterns and locations with a semicolon" FontSize="11" Foreground="#8093AC" VerticalAlignment="Center" Margin="12,0,0,0"/>
+       </StackPanel>
+      </Grid>
+     </TabItem>
+     <TabItem Header="Options">
+      <Grid Margin="8,16,0,0" Height="161">
+       <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+       <StackPanel>
+        <CheckBox Content="Match Boolean expressions line by line" IsChecked="{Binding LineByLine}"/>
+        <CheckBox Content="Include hidden and system files" IsChecked="{Binding IncludeHidden}"/>
+        <CheckBox Content="Skip binary file contents" IsChecked="{Binding SkipBinary}"/>
+        <CheckBox Content="Search inside ZIP archives" IsChecked="{Binding SearchArchives}"/>
+       </StackPanel>
+       <StackPanel Grid.Column="1" Margin="15,0,0,0">
+        <TextBlock Text="Parallel search workers" Margin="0,0,0,6"/>
+        <TextBox Text="{Binding WorkerCount}" Width="90" HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding WorkerHint}" Foreground="#91A6BF" Margin="0,6,0,3"/>
+        <TextBlock Text="0 = automatic. Use 1 for a slow mechanical drive." Foreground="#8194AD" FontSize="11" TextWrapping="Wrap"/>
+        <TextBlock Text="PDF · Office Open XML · OpenDocument · Unicode" Foreground="#61BDE9" FontSize="11" Margin="0,10,0,0"/>
+       </StackPanel>
+      </Grid>
+     </TabItem>
+     <TabItem Header="Size &amp; dates">
+      <Grid Margin="8,14,0,0" Height="163">
+       <Grid.RowDefinitions><RowDefinition Height="44"/><RowDefinition Height="44"/><RowDefinition Height="44"/></Grid.RowDefinitions>
+       <Grid.ColumnDefinitions><ColumnDefinition Width="130"/><ColumnDefinition Width="30"/><ColumnDefinition Width="*"/><ColumnDefinition Width="65"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+       <TextBlock Text="Size (KB)" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="&gt;" VerticalAlignment="Center"/>
+       <TextBox Grid.Column="2" Text="{Binding MinimumSize}" Margin="0,4" ToolTip="Minimum, exclusive"/>
+       <TextBlock Grid.Column="3" Text="&lt;" HorizontalAlignment="Center" VerticalAlignment="Center"/><TextBox Grid.Column="4" Text="{Binding MaximumSize}" Margin="0,4" ToolTip="Maximum, exclusive"/>
+       <TextBlock Grid.Row="1" Text="Modified" VerticalAlignment="Center"/><TextBlock Grid.Row="1" Grid.Column="1" Text="From" FontSize="11" VerticalAlignment="Center"/>
+       <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding ModifiedAfter}" Margin="0,4" ToolTip="yyyy-MM-dd"/>
+       <TextBlock Grid.Row="1" Grid.Column="3" Text="Through" HorizontalAlignment="Center" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="4" Text="{Binding ModifiedBefore}" Margin="0,4" ToolTip="yyyy-MM-dd"/>
+       <TextBlock Grid.Row="2" Text="Created" VerticalAlignment="Center"/><TextBlock Grid.Row="2" Grid.Column="1" Text="From" FontSize="11" VerticalAlignment="Center"/>
+       <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding CreatedAfter}" Margin="0,4" ToolTip="yyyy-MM-dd"/>
+       <TextBlock Grid.Row="2" Grid.Column="3" Text="Through" HorizontalAlignment="Center" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="4" Text="{Binding CreatedBefore}" Margin="0,4" ToolTip="yyyy-MM-dd"/>
+       <TextBlock Grid.Row="2" Grid.Column="4" Text=""/>
+      </Grid>
+     </TabItem>
+    </TabControl>
+    <StackPanel Grid.Column="1" Margin="0,41,0,0">
+     <Button Content="▶  Start search" Command="{Binding StartCommand}" Background="#1684C1" BorderBrush="#35A4DA" FontWeight="SemiBold" Padding="8,11"/>
+     <Grid Margin="0,9,0,0"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="8"/><ColumnDefinition/></Grid.ColumnDefinitions><Button Content="{Binding PauseLabel}" Command="{Binding PauseCommand}" Padding="4,8"/><Button Grid.Column="2" Content="Stop" Command="{Binding StopCommand}" Padding="4,8"/></Grid>
+     <TextBlock Text="F5 to search · Esc to stop" Foreground="#8598B1" FontSize="10" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+    </StackPanel>
+   </Grid>
+  </Border>
+  <Grid Grid.Row="3">
+   <Grid.ColumnDefinitions><ColumnDefinition Width="*" MinWidth="480"/><ColumnDefinition Width="12"/><ColumnDefinition Width="350" MinWidth="280"/></Grid.ColumnDefinitions>
+   <Border Background="#111720" BorderBrush="#303A49" BorderThickness="1" CornerRadius="7">
+    <Grid>
+     <Grid.RowDefinitions><RowDefinition Height="50"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+     <DockPanel Margin="14,8"><Button DockPanel.Dock="Right" Content="Export…" Command="{Binding ExportCommand}" Padding="11,5"/><StackPanel Orientation="Horizontal" VerticalAlignment="Center"><TextBlock Text="Search results" FontWeight="SemiBold" FontSize="15"/><Border Background="#20364C" CornerRadius="9" Padding="8,2" Margin="10,0,0,0"><TextBlock Text="{Binding FoundText}" Foreground="#78CFFE" FontSize="12"/></Border></StackPanel></DockPanel>
+     <DataGrid x:Name="ResultsGrid" Grid.Row="1" ItemsSource="{Binding Results}" SelectedItem="{Binding SelectedResult}" MouseDoubleClick="ResultsDoubleClick" KeyDown="ResultsKeyDown">
+      <DataGrid.ContextMenu><ContextMenu><MenuItem Header="Open file" Command="{Binding OpenFileCommand}"/><MenuItem Header="Open containing folder" Command="{Binding OpenFolderCommand}"/><MenuItem Header="Copy path" Command="{Binding CopyPathCommand}"/></ContextMenu></DataGrid.ContextMenu>
+      <DataGrid.Columns><DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="210"/><DataGridTextColumn Header="Size" Binding="{Binding Size}" SortMemberPath="Bytes" Width="92"/><DataGridTextColumn Header="Location" Binding="{Binding Location}" Width="*" MinWidth="180"/><DataGridTextColumn Header="Modified" Binding="{Binding ModifiedText}" SortMemberPath="Modified" Width="145"/><DataGridTextColumn Header="Hits" Binding="{Binding Hits}" Width="62"/></DataGrid.Columns>
+     </DataGrid>
+     <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False" Margin="24">
+      <StackPanel.Style><Style TargetType="StackPanel"><Setter Property="Visibility" Value="Visible"/><Style.Triggers><DataTrigger Binding="{Binding HasResults}" Value="True"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger><DataTrigger Binding="{Binding IsSearching}" Value="True"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger></Style.Triggers></Style></StackPanel.Style>
+      <TextBlock Text="⌕" FontSize="64" Foreground="#344D68" HorizontalAlignment="Center"/><TextBlock Text="Your next find starts here" FontSize="18" Foreground="#C2D0E2" HorizontalAlignment="Center" Margin="0,10,0,9"/><TextBlock Text="Choose a folder and enter a file name or text.&#10;Leave the text empty to find files by name." TextAlignment="Center" Foreground="#8093AD" LineHeight="22"/>
+     </StackPanel>
+    </Grid>
+   </Border>
+   <GridSplitter Grid.Column="1" Width="6" HorizontalAlignment="Center" Background="Transparent"/>
+   <Grid Grid.Column="2">
+    <Grid.RowDefinitions><RowDefinition Height="204"/><RowDefinition Height="12"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+    <Border Background="#171D27" BorderBrush="#303A49" BorderThickness="1" CornerRadius="7" Padding="17,14">
+     <StackPanel>
+      <TextBlock Text="Search summary" FontSize="15" FontWeight="SemiBold" Margin="0,0,0,14"/>
+      <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="{Binding FoundText}" FontSize="27" Foreground="#6ACBFC"/><TextBlock Text="FILES FOUND" FontSize="10" Foreground="#8CA0BA" Margin="0,3,0,0"/></StackPanel><StackPanel Grid.Column="1"><TextBlock Text="{Binding ElapsedText}" FontSize="27"/><TextBlock Text="ELAPSED TIME" FontSize="10" Foreground="#8CA0BA" Margin="0,3,0,0"/></StackPanel></Grid>
+      <Border BorderBrush="#303A49" BorderThickness="0,1,0,0" Margin="0,14,0,0" Padding="0,10,0,0"><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="Files checked" Foreground="#8CA0BA" FontSize="11"/><TextBlock Text="{Binding CheckedText}" Margin="0,3,0,0"/></StackPanel><StackPanel Grid.Column="1"><TextBlock Text="Skipped / unreadable" Foreground="#8CA0BA" FontSize="11"/><TextBlock Text="{Binding SkippedText}" Margin="0,3,0,0"/></StackPanel></Grid></Border>
+     </StackPanel>
+    </Border>
+    <Border Grid.Row="2" Background="#171D27" BorderBrush="#303A49" BorderThickness="1" CornerRadius="7">
+     <TabControl BorderThickness="0" Margin="1">
+      <TabItem Header="Preview"><Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><TextBlock Text="{Binding PreviewTitle}" Margin="12" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/><TextBox Grid.Row="1" Text="{Binding PreviewText, Mode=OneWay}" IsReadOnly="True" TextWrapping="NoWrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontFamily="Cascadia Mono, Consolas" FontSize="12" BorderThickness="0" Background="#111720"/><StackPanel Grid.Row="2" Orientation="Horizontal" Margin="8"><Button Content="Open" Command="{Binding OpenFileCommand}" Padding="10,6" Margin="0,0,6,0"/><Button Content="Folder" Command="{Binding OpenFolderCommand}" Padding="10,6" Margin="0,0,6,0"/><Button Content="Copy path" Command="{Binding CopyPathCommand}" Padding="10,6"/></StackPanel></Grid></TabItem>
+      <TabItem Header="Search log"><TextBox Text="{Binding ErrorText, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" BorderThickness="0" Background="#111720" FontSize="12"/></TabItem>
+     </TabControl>
+    </Border>
+   </Grid>
+  </Grid>
+  <DockPanel Grid.Row="4" VerticalAlignment="Center"><TextBlock DockPanel.Dock="Right" Text="{Binding ScannedText}" Foreground="#748AA5" FontSize="11"/><TextBlock Text="●" Foreground="#57C9AE" Margin="0,0,8,0"/><TextBlock Text="{Binding Status}" Foreground="#9BAFC7" FontSize="12" TextTrimming="CharacterEllipsis"/></DockPanel>
+ </Grid>
+</Window>
