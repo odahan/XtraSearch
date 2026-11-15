@@ -1,11 +1,41 @@
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace XtraSearch;
 
 /// <summary>Starts the desktop application and its deterministic verification mode.</summary>
 public partial class App : Application
 {
+    public static RoutedCommand PasteFromMenu { get; } = new(nameof(PasteFromMenu), typeof(App));
+
+    private void CanPasteFromMenu(object sender, CanExecuteRoutedEventArgs e)
+    {
+        e.Handled = true;
+        if (sender is not ContextMenu { PlacementTarget: TextBoxBase editor }) return;
+
+        try { e.CanExecute = ApplicationCommands.Paste.CanExecute(null, editor); }
+        catch (Exception exception) when (exception is UnauthorizedAccessException or ExternalException)
+        {
+            e.CanExecute = false;
+        }
+    }
+
+    private void ExecutePasteFromMenu(object sender, ExecutedRoutedEventArgs e)
+    {
+        e.Handled = true;
+        if (sender is not ContextMenu { PlacementTarget: TextBoxBase editor }) return;
+
+        try { ApplicationCommands.Paste.Execute(null, editor); }
+        catch (Exception exception) when (exception is UnauthorizedAccessException or ExternalException)
+        {
+            System.Diagnostics.Debug.WriteLine(exception.Message);
+        }
+    }
+
     protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);

@@ -16,3 +16,6 @@
 *.obj
 *.nupkg
 *.snupkg
+
+# Visual Studio user state
+.vs/

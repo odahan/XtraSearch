@@ -12,10 +12,11 @@ $executable = Join-Path $publishDirectory 'XtraSearch.exe'
 
 Push-Location -LiteralPath $PSScriptRoot
 try {
+    # WPF .NET 11 needs its mixed-mode assemblies on disk at startup. See dotnet/wpf#11842.
     & $dotnet publish $project -m:1 --configuration Release --runtime win-x64 `
         --self-contained true --output $publishDirectory `
-        -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true `
-        -p:DebugType=embedded -p:UseLocalCompilerAdapter=false
+        -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true -p:NoWarn=NETSDK1244 `
+        -p:DebugType=embedded
     if ($LASTEXITCODE -ne 0) {
         throw "XtraSearch publish failed (dotnet exit code $LASTEXITCODE)."
     }

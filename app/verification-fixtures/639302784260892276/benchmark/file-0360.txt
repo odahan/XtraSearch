@@ -1,2 +1,0 @@
-A deterministic search fixture 360.
-needle value

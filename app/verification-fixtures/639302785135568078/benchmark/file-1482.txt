@@ -1,2 +1,0 @@
-A deterministic search fixture 1482.
-needle value

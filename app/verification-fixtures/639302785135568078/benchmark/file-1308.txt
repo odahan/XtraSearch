@@ -1,2 +1,0 @@
-A deterministic search fixture 1308.
-needle value

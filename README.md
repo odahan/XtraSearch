@@ -12,9 +12,7 @@ XtraSearch is a Windows desktop app for finding files by name or by the text the
 
 ## Build from source
 
-The app uses WPF and targets .NET 11 on Windows. Install the .NET 11 SDK and make NuGet packages available for restore.
-
-The project currently references a local compiler adapter at `app/build-tools/XtraSearch.Compiler.dll`. A fresh checkout excludes compiled DLLs, so set up the adapter using the [build tools and compatibility notes](app/README.md#build-host-compatibility) before running the build.
+The app uses WPF and targets .NET 11 on Windows. Install the .NET 11 SDK and make NuGet packages available for restore. The project uses the SDK's standard C# compiler.
 
 ```powershell
 dotnet build app/XtraSearch.csproj -m:1 -c Release

@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -13,6 +14,7 @@ public partial class MainWindow : Window
 {
     private readonly string? screenshot;
     private int frames;
+    private double searchThreadsHeight = 160;
     private readonly MainViewModel viewModel = new();
 
     public MainWindow(string? screenshot = null)
@@ -68,6 +70,25 @@ public partial class MainWindow : Window
     private void ResultsDoubleClick(object sender, MouseButtonEventArgs e)
     {
         if (viewModel.OpenFileCommand.CanExecute(null)) viewModel.OpenFileCommand.Execute(null);
+    }
+
+    private void SearchThreadsToggled(object sender, RoutedEventArgs e)
+    {
+        if (sender is ToggleButton { IsChecked: true })
+        {
+            var parent = (System.Windows.Controls.Grid)SearchThreadsRow.Parent;
+            var available = parent.ActualHeight - parent.RowDefinitions[0].ActualHeight - 6;
+            var paneHeight = Math.Clamp(searchThreadsHeight, 64, Math.Max(64, available - 64));
+            SearchThreadsRow.MinHeight = 64;
+            parent.RowDefinitions[1].Height = new GridLength(Math.Max(64, available - paneHeight), GridUnitType.Star);
+            SearchThreadsRow.Height = new GridLength(paneHeight, GridUnitType.Star);
+        }
+        else
+        {
+            if (SearchThreadsRow.ActualHeight > 0) searchThreadsHeight = SearchThreadsRow.ActualHeight;
+            SearchThreadsRow.MinHeight = 0;
+            SearchThreadsRow.Height = new GridLength(0);
+        }
     }
 
     private void ResultsKeyDown(object sender, KeyEventArgs e)

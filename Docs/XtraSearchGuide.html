@@ -102,20 +102,21 @@
             <li>Dans <strong>File name</strong>, saisissez <code>*</code> pour tous les fichiers ou <code>*.txt;*.log</code> pour limiter la recherche à deux extensions.</li>
             <li>Saisissez du texte dans <strong>Containing text</strong>, ou laissez ce champ vide pour chercher uniquement par nom. Lancez avec <strong>Start search</strong> ou <kbd>F5</kbd>.</li>
           </ol>
+          <p>Chaque liste déroulante conserve les dix dernières valeurs distinctes utilisées dans son champ.</p>
         </section>
         <section>
           <h2>Choisir le mode de recherche</h2>
           <ul>
-            <li><strong>Wildcard</strong> utilise <code>*</code> pour une suite de caractères et <code>?</code> pour un caractère. Un nom simple sans joker ni point peut correspondre à une partie du nom.</li>
-            <li><strong>Plain text</strong> cherche le texte saisi tel quel. <strong>Regex</strong> accepte une expression régulière, par exemple <code>error\s+\d+</code>.</li>
-            <li><strong>Boolean</strong> accepte <code>AND</code>, <code>OR</code>, <code>NOT</code>, les guillemets et les parenthèses. Exemple <code>"connection failed" AND NOT timeout</code>. <strong>Boolean Regex</strong> traite les termes comme des expressions régulières.</li>
+            <li>Dans <strong>Options</strong>, le mode <strong>Wildcards</strong> de <strong>File Name</strong> utilise <code>*</code> pour une suite de caractères et <code>?</code> pour un caractère. Un nom simple sans joker ni point peut correspondre à une partie du nom.</li>
+            <li><strong>Regular Expression</strong> accepte une expression régulière, par exemple <code>error\s+\d+</code>.</li>
+            <li><strong>Boolean</strong> accepte <code>AND</code>, <code>OR</code>, <code>NOT</code>, les guillemets et les parenthèses. Entourez une expression littérale de guillemets, comme dans <code>"connection failed" AND NOT timeout</code>.</li>
             <li>Les termes peuvent correspondre sur des lignes différentes. Activez <strong>Match Boolean expressions line by line</strong> dans <strong>Options</strong> pour exiger une correspondance sur une seule ligne. <strong>Match case</strong> se règle séparément pour le nom et le contenu.</li>
           </ul>
         </section>
         <section>
           <h2>Affiner les critères</h2>
           <p><strong>Include subfolders</strong> parcourt les sous-dossiers. <strong>Whole words</strong> limite la recherche de contenu aux mots entiers. Dans <strong>Options</strong>, réglez l’inclusion des fichiers masqués ou système, l’exclusion du contenu binaire et le nombre de workers (<code>0</code> pour le mode automatique).</p>
-          <p>Dans <strong>Size &amp; dates</strong>, les limites de taille sont strictes et exprimées en Ko de 1 024 octets. Saisissez les dates de création ou de modification au format <code>yyyy-MM-dd</code>. Les jours renseignés sont inclus en entier.</p>
+          <p>Dans <strong>Size &amp; Dates</strong>, les limites de taille sont strictes et exprimées en Ko de 1 024 octets. Saisissez les dates de création ou de modification au format <code>yyyy-MM-dd</code> ou choisissez-les dans le calendrier. Les jours renseignés sont inclus en entier.</p>
         </section>
         <section>
           <h2>Formats pris en charge</h2>
@@ -125,6 +126,7 @@
         <section>
           <h2>Consulter les résultats</h2>
           <p><strong>Pause</strong> suspend la recherche. <strong>Resume</strong> la reprend. <strong>Stop</strong> ou <kbd>Échap</kbd> l’arrête et conserve les résultats trouvés.</p>
+          <p>Pendant une recherche de contenu en parallèle, cliquez sur le nombre de threads dans la barre d’état pour voir le fichier traité, le temps écoulé et le nombre de lignes lues pour chaque thread. Faites glisser le séparateur pour redimensionner le volet.</p>
           <p>Sélectionnez un résultat pour afficher son aperçu. Ouvrez un fichier avec <kbd>Entrée</kbd> ou un double-clic. Utilisez <strong>Folder</strong> pour le localiser, <strong>Copy path</strong> pour copier son chemin et <strong>Search log</strong> pour consulter les erreurs.</p>
         </section>
         <section>
@@ -144,20 +146,21 @@
             <li>In <strong>File name</strong>, enter <code>*</code> for all files or <code>*.txt;*.log</code> to limit the search to two extensions.</li>
             <li>Enter text in <strong>Containing text</strong> or leave it blank to search by name alone. Choose <strong>Start search</strong> or press <kbd>F5</kbd>.</li>
           </ol>
+          <p>Each drop-down remembers the ten most recent distinct values used in that field.</p>
         </section>
         <section>
           <h2>Choose a matching mode</h2>
           <ul>
-            <li><strong>Wildcard</strong> uses <code>*</code> for any number of characters and <code>?</code> for one character. A simple name without a wildcard or dot can match part of a file name.</li>
-            <li><strong>Plain text</strong> matches the entered text literally. <strong>Regex</strong> accepts a regular expression such as <code>error\s+\d+</code>.</li>
-            <li><strong>Boolean</strong> accepts <code>AND</code>, <code>OR</code>, <code>NOT</code>, quoted phrases, and parentheses. Try <code>"connection failed" AND NOT timeout</code>. <strong>Boolean Regex</strong> treats terms as regular expressions.</li>
+            <li>In <strong>Options</strong>, the <strong>Wildcards</strong> mode for <strong>File Name</strong> uses <code>*</code> for any number of characters and <code>?</code> for one character. A simple name without a wildcard or dot can match part of a file name.</li>
+            <li><strong>Regular Expression</strong> accepts a regular expression such as <code>error\s+\d+</code>.</li>
+            <li><strong>Boolean</strong> accepts <code>AND</code>, <code>OR</code>, <code>NOT</code>, quoted phrases, and parentheses. Use quotation marks for a literal phrase, as in <code>"connection failed" AND NOT timeout</code>.</li>
             <li>Content terms can match across lines. Enable <strong>Match Boolean expressions line by line</strong> in <strong>Options</strong> to require a match on a single line. Set <strong>Match case</strong> separately for file names and content.</li>
           </ul>
         </section>
         <section>
           <h2>Narrow the search</h2>
           <p><strong>Include subfolders</strong> searches nested folders. <strong>Whole words</strong> limits content matches to whole words. In <strong>Options</strong>, control hidden and system files, binary content, and parallel search workers (<code>0</code> for automatic).</p>
-          <p>In <strong>Size &amp; dates</strong>, size limits are exclusive and use KB of 1,024 bytes. Enter creation or modification dates as <code>yyyy-MM-dd</code>. The specified dates include the entire day.</p>
+          <p>In <strong>Size &amp; Dates</strong>, size limits are exclusive and use KB of 1,024 bytes. Enter creation or modification dates as <code>yyyy-MM-dd</code> or choose them from the calendar. The specified dates include the entire day.</p>
         </section>
         <section>
           <h2>Supported formats</h2>
@@ -167,6 +170,7 @@
         <section>
           <h2>Review results</h2>
           <p><strong>Pause</strong> suspends the search. <strong>Resume</strong> continues it. <strong>Stop</strong> or <kbd>Esc</kbd> ends the search and keeps results found so far.</p>
+          <p>During a parallel content search, click the thread count in the status bar to see the file, elapsed time, and lines read for each thread. Drag the divider to resize the pane.</p>
           <p>Select a result to preview it. Open a file with <kbd>Enter</kbd> or a double-click. Use <strong>Folder</strong> to locate it, <strong>Copy path</strong> to copy its path, and <strong>Search log</strong> to review errors.</p>
         </section>
         <section>

@@ -93,9 +93,22 @@ public static class SearchVerification
         var benchmark = await Search(new SearchOptions(benchmarkRoot, "*.txt", "needle"));
         stopwatch.Stop();
         Assert(benchmark.Length == 2500, "All 2500 benchmark matches returned");
-        var viewModel = new MainViewModel { Locations = root, FileName = "alpha.txt", Content = "alpha" };
+        var historyPath = Path.Combine(root, "history.json");
+        var history = new SearchHistory(historyPath);
+        var viewModel = new MainViewModel(history) { Locations = root, FileName = "alpha.txt", Content = "alpha", WorkerCount = "2" };
         await viewModel.StartCommand.ExecuteAsync(null);
         Assert(viewModel.Results.Count == 1 && viewModel.HasResults && !viewModel.IsSearching, "MVVM search command publishes actual results");
+        Assert(viewModel.SearchThreads == 2 && !viewModel.ShowSearchThreads, "Parallel content search exposes its worker count with the pane initially hidden");
+        viewModel.ShowSearchThreads = true;
+        Assert(viewModel.WorkerRows.Single() is { Name: "alpha.txt", Lines: 4, State: "Idle" }, "The worker pane reports the scanned file and its line count");
+        var reloadedHistory = new SearchHistory(historyPath);
+        Assert(reloadedHistory.FileNames.Single() == "alpha.txt" && reloadedHistory.Contents.Single() == "alpha" &&
+               reloadedHistory.Locations.Single() == root, "Search history persists the three input values independently");
+        for (var i = 0; i < 12; i++) history.Remember(new SearchOptions(root, $"file-{i}"));
+        history.Remember(new SearchOptions(root, "file-5"));
+        var recentNames = new SearchHistory(historyPath).FileNames;
+        Assert(recentNames.Count == 10 && recentNames[0] == "file-5" && recentNames.Distinct().Count() == 10,
+            "Search history keeps ten unique entries and moves reused values to the top");
         viewModel.SelectedResult = viewModel.Results[0];
         Assert(viewModel.PreviewText.Contains("alpha") && viewModel.OpenFileCommand.CanExecute(null), "Selected result exposes preview and open command");
         viewModel.Shutdown();

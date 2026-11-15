@@ -19,18 +19,26 @@ public partial class MainViewModel : ObservableObject
     private readonly ManualResetEventSlim pause = new(true);
     private readonly DispatcherTimer timer;
     private readonly Stopwatch stopwatch = new();
+    private readonly SearchHistory history;
+    private readonly Dictionary<int, int> workerRowIndices = new();
     private SearchStatistics statistics = new();
     private CancellationTokenSource? cancellation;
     private CancellationTokenSource? previewCancellation;
 
     public ObservableCollection<SearchResult> Results { get; } = [];
-    public string[] NameModes { get; } = ["Wildcard", "Plain text", "Regex", "Boolean"];
-    public string[] ContentModes { get; } = ["Plain text", "Boolean", "Regex", "Boolean Regex"];
+    public ObservableCollection<string> FileNameHistory => history.FileNames;
+    public ObservableCollection<string> ContentHistory => history.Contents;
+    public ObservableCollection<string> LocationHistory => history.Locations;
+    public ObservableCollection<SearchWorkerRow> WorkerRows { get; } = [];
+    public ObservableCollection<SearchModeChoice> NameModes { get; } =
+        [new("Boolean", "Boolean"), new("Regex", "Regular Expression"), new("Wildcard", "Wildcards")];
+    public ObservableCollection<SearchModeChoice> ContentModes { get; } =
+        [new("Boolean", "Boolean"), new("Regex", "Regular Expression")];
     [ObservableProperty] private string fileName = "*";
     [ObservableProperty] private string content = "";
     [ObservableProperty] private string locations = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
     [ObservableProperty] private string nameMode = "Wildcard";
-    [ObservableProperty] private string contentMode = "Plain text";
+    [ObservableProperty] private string contentMode = "Boolean";
     [ObservableProperty] private bool nameCase;
     [ObservableProperty] private bool contentCase;
     [ObservableProperty] private bool subfolders = true;
@@ -46,6 +54,9 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private string createdAfter = "";
     [ObservableProperty] private string createdBefore = "";
     [ObservableProperty] private string workerCount = "0";
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(HasParallelContentSearch), nameof(SearchThreadsText))]
+    private int searchThreads;
+    [ObservableProperty] private bool showSearchThreads;
     [ObservableProperty, NotifyCanExecuteChangedFor(nameof(StartCommand)), NotifyCanExecuteChangedFor(nameof(StopCommand)), NotifyCanExecuteChangedFor(nameof(PauseCommand)), NotifyCanExecuteChangedFor(nameof(NewSearchCommand))]
     private bool isSearching;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(PauseLabel))] private bool isPaused;
@@ -63,9 +74,19 @@ public partial class MainViewModel : ObservableObject
     private SearchResult? selectedResult;
     public string PauseLabel => IsPaused ? "Resume" : "Pause";
     public string WorkerHint => $"Automatic: {Environment.ProcessorCount} logical processors";
+    public bool HasParallelContentSearch => SearchThreads > 1;
+    public string SearchThreadsText => $"{SearchThreads:N0} search threads";
 
-    public MainViewModel()
+    partial void OnShowSearchThreadsChanged(bool value)
     {
+        if (value) PublishWorkerProgress();
+    }
+
+    public MainViewModel() : this(new SearchHistory()) { }
+
+    internal MainViewModel(SearchHistory history)
+    {
+        this.history = history;
         timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(SearchEngine.NotificationMilliseconds) };
         timer.Tick += (_, _) => PublishProgress();
     }
@@ -85,6 +106,7 @@ public partial class MainViewModel : ObservableObject
             if (options.Content.Length > 0) _ = new ExpressionMatcher(options.Content, options.ContentMode, options.ContentCase, options.WholeWord, options.LineByLine);
         }
         catch (Exception exception) { Status = exception.Message; return; }
+        history.Remember(options);
         Results.Clear();
         pending.Clear();
         SelectedResult = null;
@@ -92,6 +114,7 @@ public partial class MainViewModel : ObservableObject
         PreviewTitle = "File preview";
         PreviewText = "Results will appear as matching files are found.";
         statistics = new SearchStatistics();
+        ResetWorkerProgress(options.Content.Length > 0 ? SearchEngine.ResolveWorkerCount(options) : 0);
         cancellation?.Dispose();
         cancellation = new CancellationTokenSource();
         pause.Set();
@@ -143,6 +166,35 @@ public partial class MainViewModel : ObservableObject
         ScannedText = $"{Interlocked.Read(ref statistics.Bytes) / 1048576d:N2} MB";
         ElapsedText = $"{stopwatch.Elapsed.TotalSeconds:N2} s";
         ErrorText = statistics.Errors.IsEmpty ? "No skipped files or errors." : string.Join(Environment.NewLine + Environment.NewLine, statistics.Errors);
+        if (ShowSearchThreads) PublishWorkerProgress();
+    }
+
+    private void ResetWorkerProgress(int workers)
+    {
+        ShowSearchThreads = false;
+        WorkerRows.Clear();
+        workerRowIndices.Clear();
+        SearchThreads = workers;
+    }
+
+    private void PublishWorkerProgress()
+    {
+        var files = statistics.WorkerFiles;
+        for (var index = 0; index < files.Length; index++)
+        {
+            var file = Volatile.Read(ref files[index]);
+            if (file is null) continue;
+            var row = file.Snapshot(index + 1);
+            if (workerRowIndices.TryGetValue(row.Worker, out var rowIndex))
+            {
+                if (WorkerRows[rowIndex] != row) WorkerRows[rowIndex] = row;
+            }
+            else
+            {
+                workerRowIndices.Add(row.Worker, WorkerRows.Count);
+                WorkerRows.Add(row);
+            }
+        }
     }
 
     public SearchOptions CaptureOptions()
@@ -259,6 +311,8 @@ public partial class MainViewModel : ObservableObject
         {
             var options = JsonSerializer.Deserialize<SearchOptions>(File.ReadAllText(dialog.FileName)) ?? throw new InvalidDataException("Invalid search file.");
             Locations = options.Locations; FileName = options.FileName; Content = options.Content;
+            if (options.NameMode == "Plain text") AddLegacyMode(NameModes, options.NameMode);
+            if (options.ContentMode is "Plain text" or "Boolean Regex") AddLegacyMode(ContentModes, options.ContentMode);
             NameMode = options.NameMode; ContentMode = options.ContentMode; NameCase = options.NameCase; ContentCase = options.ContentCase;
             Subfolders = options.Subfolders; WholeWord = options.WholeWord; LineByLine = options.LineByLine;
             IncludeHidden = options.IncludeHidden; SkipBinary = options.SkipBinary; SearchArchives = options.SearchArchives;
@@ -274,13 +328,19 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(CanStart))]
     private void NewSearch()
     {
-        FileName = "*"; Content = ""; NameMode = "Wildcard"; ContentMode = "Plain text";
+        FileName = "*"; Content = ""; NameMode = "Wildcard"; ContentMode = "Boolean";
+        ResetWorkerProgress(0);
         NameCase = ContentCase = WholeWord = LineByLine = SearchArchives = false;
         Subfolders = IncludeHidden = SkipBinary = true;
         MinimumSize = MaximumSize = ModifiedAfter = ModifiedBefore = CreatedAfter = CreatedBefore = "";
         WorkerCount = "0"; Results.Clear(); HasResults = false; SelectedResult = null;
         statistics = new SearchStatistics(); stopwatch.Reset(); PublishProgress();
         PreviewTitle = "File preview"; PreviewText = "Select a result to see its matching lines or a text preview."; Status = "Ready";
+    }
+
+    private static void AddLegacyMode(ObservableCollection<SearchModeChoice> choices, string mode)
+    {
+        if (!choices.Any(choice => choice.Value == mode)) choices.Add(new SearchModeChoice(mode, mode));
     }
 
     /// <summary>Extracts the current guide beside the executable and opens it in the default browser.</summary>

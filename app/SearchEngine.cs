@@ -1,4 +1,5 @@
 using System.IO.Compression;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Channels;
 using System.Xml;
@@ -11,6 +12,9 @@ public sealed class SearchEngine
 {
     public const int NotificationMilliseconds = 100;
     public const int PreviewLines = 200;
+
+    public static int ResolveWorkerCount(SearchOptions options) =>
+        Math.Clamp(options.Workers > 0 ? options.Workers : Environment.ProcessorCount, 1, 1024);
 
     public async Task RunAsync(SearchOptions options, Action<SearchResult> onResult,
         SearchStatistics statistics, ManualResetEventSlim pause, CancellationToken cancellationToken)
@@ -79,7 +83,11 @@ public sealed class SearchEngine
             catch (Exception exception) { queue.Writer.TryComplete(exception); throw; }
         }
 
-        void Publish(string displayName, string location, long bytes, DateTime modified, string path, IEnumerable<string>? lines)
+        var workers = ResolveWorkerCount(options);
+        var workerFiles = content != null && workers > 1 ? new SearchFileProgress?[workers] : [];
+        statistics.WorkerFiles = workerFiles;
+
+        void Publish(int worker, string displayName, string location, long bytes, DateTime modified, string path, IEnumerable<string>? lines)
         {
             long hits = 0;
             var preview = new StringBuilder();
@@ -87,14 +95,39 @@ public sealed class SearchEngine
             if (content != null && lines != null)
             {
                 long lineNumber = 0;
-                foreach (var line in lines)
+                SearchFileProgress? progress = null;
+                if (workerFiles.Length > 0)
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
-                    pause.Wait(cancellationToken);
-                    lineNumber++;
-                    if (!content.Feed(line, state!)) continue;
-                    hits++;
-                    if (hits <= PreviewLines) preview.AppendLine($"{lineNumber,6}  {line[..Math.Min(2000, line.Length)]}");
+                    progress = new SearchFileProgress(displayName, location);
+                    Volatile.Write(ref workerFiles[worker], progress);
+                }
+
+                var lastProgress = Stopwatch.GetTimestamp();
+                try
+                {
+                    foreach (var line in lines)
+                    {
+                        cancellationToken.ThrowIfCancellationRequested();
+                        pause.Wait(cancellationToken);
+                        lineNumber++;
+                        if (progress != null && (lineNumber & 255) == 0 &&
+                            Stopwatch.GetElapsedTime(lastProgress).TotalMilliseconds >= NotificationMilliseconds)
+                        {
+                            progress.LinesRead = lineNumber;
+                            lastProgress = Stopwatch.GetTimestamp();
+                        }
+                        if (!content.Feed(line, state!)) continue;
+                        hits++;
+                        if (hits <= PreviewLines) preview.AppendLine($"{lineNumber,6}  {line[..Math.Min(2000, line.Length)]}");
+                    }
+                }
+                finally
+                {
+                    if (progress != null)
+                    {
+                        progress.LinesRead = lineNumber;
+                        progress.Finish();
+                    }
                 }
                 if (!content.Accept(state!, hits)) return;
             }
@@ -103,7 +136,7 @@ public sealed class SearchEngine
             onResult(new SearchResult(displayName, location, bytes, modified, hits, preview.ToString(), path));
         }
 
-        async Task Consume()
+        async Task Consume(int worker)
         {
             await foreach (var file in queue.Reader.ReadAllAsync(cancellationToken))
             {
@@ -116,13 +149,13 @@ public sealed class SearchEngine
                         (!options.MinimumBytes.HasValue || length > options.MinimumBytes.Value) &&
                         (!options.MaximumBytes.HasValue || length < options.MaximumBytes.Value) &&
                         (!options.ModifiedAfter.HasValue || modified >= options.ModifiedAfter.Value.Date) &&
-                        (!options.ModifiedBefore.HasValue || modified < options.ModifiedBefore.Value.Date.AddDays(1)) &&
+                        (!options.ModifiedBefore.HasValue || modified.Date <= options.ModifiedBefore.Value.Date) &&
                         (!options.CreatedAfter.HasValue || created >= options.CreatedAfter.Value.Date) &&
-                        (!options.CreatedBefore.HasValue || created < options.CreatedBefore.Value.Date.AddDays(1));
+                        (!options.CreatedBefore.HasValue || created.Date <= options.CreatedBefore.Value.Date);
 
                     if (name.IsMatch(file.Name) && MetadataMatches(file.Length, file.LastWriteTime, file.CreationTime))
                     {
-                        Publish(file.Name, file.DirectoryName ?? "", file.Length, file.LastWriteTime, file.FullName,
+                        Publish(worker, file.Name, file.DirectoryName ?? "", file.Length, file.LastWriteTime, file.FullName,
                             content == null ? null : DocumentText.Read(file.FullName, options.SkipBinary, cancellationToken));
                     }
 
@@ -135,7 +168,7 @@ public sealed class SearchEngine
                             if (entry.Name.Length == 0 || !name.IsMatch(entry.Name) ||
                                 !MetadataMatches(entry.Length, entry.LastWriteTime.LocalDateTime, file.CreationTime)) continue;
                             using var stream = entry.Open();
-                            Publish(entry.Name, file.FullName + " ▸ " + (Path.GetDirectoryName(entry.FullName) ?? ""), entry.Length,
+                            Publish(worker, entry.Name, file.FullName + " ▸ " + (Path.GetDirectoryName(entry.FullName) ?? ""), entry.Length,
                                 entry.LastWriteTime.LocalDateTime, file.FullName + "|" + entry.FullName,
                                 content == null ? null : DocumentText.ReadStream(stream, options.SkipBinary, cancellationToken));
                         }
@@ -148,9 +181,8 @@ public sealed class SearchEngine
             }
         }
 
-        var workers = Math.Clamp(options.Workers > 0 ? options.Workers : Environment.ProcessorCount, 1, 1024);
         var producer = Task.Run(Produce, cancellationToken);
-        var consumers = Enumerable.Range(0, workers).Select(_ => Task.Run(Consume, cancellationToken));
+        var consumers = Enumerable.Range(0, workers).Select(worker => Task.Run(() => Consume(worker), cancellationToken));
         await Task.WhenAll(consumers.Prepend(producer));
     }
 }

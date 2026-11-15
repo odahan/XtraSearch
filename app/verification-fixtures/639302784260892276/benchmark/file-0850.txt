@@ -1,2 +1,0 @@
-A deterministic search fixture 850.
-needle value

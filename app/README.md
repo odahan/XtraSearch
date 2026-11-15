@@ -18,6 +18,4 @@ Use the in-app search guide for matching syntax and supported formats. See MECHA
 
 The UI graphics are original WPF text and shapes. Agent Ransack is the investigated reference, not the name or branding of this product. No original logos or resource images ship in the application.
 
-## Build host compatibility
 
-This workspace denies the asynchronous named pipes used by the .NET 11 compiler launcher. A small Csc task subclass in build-tools starts the same SDK compiler with inherited console handles. It does not alter compiler arguments, generated code, target framework, or the shipped application. Its source and RebuildCompiler.ps1 are included; the adjacent Microsoft.Build.Tasks.CodeAnalysis.dll comes from the installed .NET 11 SDK (Microsoft, MIT). The adapter is already built so ordinary dotnet build works in this environment. To regenerate it, run the script with the installed SDK version. NuGet vulnerability lookup emitted NU1900 because the package service was unreachable; package restore used the installed cache.
