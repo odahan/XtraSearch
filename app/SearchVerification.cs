@@ -66,7 +66,10 @@ public static class SearchVerification
         Assert((await Search(basic with { MinimumBytes = 10000 })).Length == 0, "Minimum file size filter");
         Assert((await Search(basic with { MaximumBytes = new FileInfo(Path.Combine(root, "alpha.txt")).Length, FileName = "alpha.txt" })).Length == 0, "Strict maximum boundary");
         Assert((await Search(basic with { ModifiedAfter = DateTime.Today.AddDays(1) })).Length == 0, "Modified date filter");
-        Assert((await Search(new SearchOptions(root, "*.txt", "archive needle", SearchArchives: true))).Length == 1, "ZIP entry content search");
+        var zipResults = await Search(new SearchOptions(root, "*.txt", "archive needle", SearchArchives: true));
+        Assert(zipResults.Length == 1, "ZIP entry content search");
+        Assert(zipResults[0].PhysicalPath == zipPath && zipResults[0].FullPath != zipPath, "ZIP entry targets its containing archive");
+        Assert((await Search(basic)).Single(result => result.Name == "alpha.txt").PhysicalPath == Path.Combine(root, "alpha.txt"), "Ordinary result targets its own file");
         Assert((await Search(new SearchOptions(root, "*.docx", "office needle"))).Length == 1, "Office XML text extraction");
         Assert((await Search(new SearchOptions(root, "*.pdf", "PDF needle"))).Length == 1, "PDF content extraction");
         Assert(new ExpressionMatcher("alpha", "Wildcard", false).IsMatch("my-alpha.txt"), "Unadorned name is a substring");

@@ -259,12 +259,12 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(HasSelection))]
-    private void OpenFile() => ShellOpen(SelectedResult!.FullPath.Split('|')[0]);
+    private void OpenFile() => ShellOpen(SelectedResult!.PhysicalPath);
 
     [RelayCommand(CanExecute = nameof(HasSelection))]
     private void OpenFolder()
     {
-        try { Process.Start(new ProcessStartInfo("explorer.exe", $"/select,\"{SelectedResult!.FullPath.Split('|')[0]}\"") { UseShellExecute = true }); }
+        try { Process.Start(new ProcessStartInfo("explorer.exe", $"/select,\"{SelectedResult!.PhysicalPath}\"") { UseShellExecute = true }); }
         catch (Exception exception) { Status = exception.Message; }
     }
 

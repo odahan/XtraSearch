@@ -17,6 +17,7 @@ public sealed record SearchResult(string Name, string Location, long Bytes, Date
 {
     public string Size => Bytes < 1024 ? $"{Bytes:N0} B" : Bytes < 1048576 ? $"{Bytes / 1024d:N1} KB" : $"{Bytes / 1048576d:N1} MB";
     public string ModifiedText => Modified.ToString("yyyy-MM-dd HH:mm");
+    public string PhysicalPath => FullPath.Split('|')[0];
 }
 
 /// <summary>Thread-safe counters sampled by the view model.</summary>

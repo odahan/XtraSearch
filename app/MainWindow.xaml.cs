@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -91,12 +93,45 @@ public partial class MainWindow : Window
         }
     }
 
+    private void ResultsRightClick(object sender, MouseButtonEventArgs e)
+    {
+        if (e.OriginalSource is not DependencyObject source ||
+            ItemsControl.ContainerFromElement(ResultsGrid, source) is not DataGridRow { Item: SearchResult result } row)
+            return;
+
+        ResultsGrid.SelectedItem = result;
+        row.Focus();
+        e.Handled = true;
+        ShowResultMenu(result, row.PointToScreen(e.GetPosition(row)));
+    }
+
     private void ResultsKeyDown(object sender, KeyEventArgs e)
     {
         if (e.Key == Key.Enter && viewModel.OpenFileCommand.CanExecute(null))
         {
             viewModel.OpenFileCommand.Execute(null);
             e.Handled = true;
+        }
+        else if ((e.Key == Key.Apps || (e.Key == Key.F10 && Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))) &&
+                 ResultsGrid.SelectedItem is SearchResult result)
+        {
+            var row = ResultsGrid.ItemContainerGenerator.ContainerFromItem(result) as DataGridRow;
+            var anchor = row == null ? ResultsGrid.PointToScreen(new Point(0, 0)) : row.PointToScreen(new Point(0, row.ActualHeight));
+            e.Handled = true;
+            ShowResultMenu(result, anchor);
+        }
+    }
+
+    private void ShowResultMenu(SearchResult result, Point screenPosition)
+    {
+        try
+        {
+            ShellContextMenu.Show(this, result.PhysicalPath, screenPosition, Keyboard.Modifiers);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or COMException or Win32Exception or InvalidOperationException)
+        {
+            MessageBox.Show(this, $"Unable to show the context menu for:\n{result.PhysicalPath}\n\n{exception.Message}",
+                "XtraSearch", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 
