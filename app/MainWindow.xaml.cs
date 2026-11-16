@@ -129,7 +129,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            ShellContextMenu.Show(this, result.PhysicalPath, screenPosition, Keyboard.Modifiers);
+            ShellContextMenu.Show(this, result.PhysicalPath, screenPosition, Keyboard.Modifiers, viewModel.RevealInExplorer);
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or COMException or Win32Exception or InvalidOperationException)
         {

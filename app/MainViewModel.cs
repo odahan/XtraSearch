@@ -298,9 +298,12 @@ public partial class MainViewModel : ObservableObject
     private void OpenFile() => ShellOpen(SelectedResult!.PhysicalPath);
 
     [RelayCommand(CanExecute = nameof(HasSelection))]
-    private void OpenFolder()
+    private void OpenFolder() => RevealInExplorer(SelectedResult!.PhysicalPath);
+
+    /// <summary>Opens the containing folder and selects the result's physical file.</summary>
+    internal void RevealInExplorer(string path)
     {
-        try { Process.Start(new ProcessStartInfo("explorer.exe", $"/select,\"{SelectedResult!.PhysicalPath}\"") { UseShellExecute = true }); }
+        try { Process.Start(new ProcessStartInfo("explorer.exe", $"/select,\"{path}\"") { UseShellExecute = true }); }
         catch (Exception exception) { Status = exception.Message; }
     }
 

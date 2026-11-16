@@ -10,6 +10,8 @@ internal static class ShellContextMenu
 {
     private const uint FirstCommand = 1;
     private const uint LastCommand = 0x7fff;
+    private const uint RevealInExplorerCommand = 0x8000;
+    private const uint MenuByPosition = 0x0400;
     private const uint ExtendedVerbs = 0x00000100;
     private const uint ReturnCommand = 0x0100;
     private const uint RightButton = 0x0002;
@@ -18,7 +20,8 @@ internal static class ShellContextMenu
     private const uint PointInvoke = 0x20000000;
     private const uint ControlDown = 0x40000000;
 
-    public static void Show(Window owner, string path, Point screenPosition, ModifierKeys modifiers)
+    /// <summary>Shows the native file menu and handles the application command through the supplied callback.</summary>
+    public static void Show(Window owner, string path, Point screenPosition, ModifierKeys modifiers, Action<string> revealInExplorer)
     {
         if ((File.GetAttributes(path) & FileAttributes.Directory) != 0)
             throw new IOException("The search result is no longer a file.");
@@ -41,6 +44,8 @@ internal static class ShellContextMenu
 
             var queryFlags = modifiers.HasFlag(ModifierKeys.Shift) ? ExtendedVerbs : 0;
             Marshal.ThrowExceptionForHR(contextMenu.QueryContextMenu(menu, 0, FirstCommand, LastCommand, queryFlags));
+            if (!InsertMenuW(menu, 0, MenuByPosition, RevealInExplorerCommand, "Show in File Explorer"))
+                throw new Win32Exception(Marshal.GetLastWin32Error());
 
             var menu3 = contextMenu as IContextMenu3;
             var menu2 = menu3 == null ? contextMenu as IContextMenu2 : null;
@@ -70,7 +75,11 @@ internal static class ShellContextMenu
             }
             finally { source.RemoveHook(hook); }
 
-            if (selected != 0)
+            if (selected == RevealInExplorerCommand)
+            {
+                revealInExplorer(path);
+            }
+            else if (selected is >= FirstCommand and <= LastCommand)
             {
                 var invocationModifiers = Keyboard.Modifiers;
                 var command = new InvokeCommandInfo
@@ -173,6 +182,9 @@ internal static class ShellContextMenu
         [MarshalAs(UnmanagedType.Interface)] out IShellFolder folder, out IntPtr childId);
     [DllImport("user32.dll", SetLastError = true)]
     private static extern IntPtr CreatePopupMenu();
+    [DllImport("user32.dll", CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool InsertMenuW(IntPtr menu, uint position, uint flags, nuint command, string text);
     [DllImport("user32.dll")]
     private static extern uint TrackPopupMenuEx(IntPtr menu, uint flags, int x, int y, IntPtr hwnd, IntPtr parameters);
     [DllImport("user32.dll")]
