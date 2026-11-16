@@ -114,6 +114,16 @@
           </ul>
         </section>
         <section>
+          <h2>Tester une expression régulière</h2>
+          <ol>
+            <li>Dans <strong>Options</strong>, choisissez <strong>Regular Expression</strong> pour le nom ou le contenu. Revenez dans <strong>Main</strong> et cliquez sur <strong>Test…</strong> à côté du champ correspondant.</li>
+            <li>Saisissez votre expression. Collez un échantillon ou utilisez <strong>Load sample…</strong> pour charger un fichier texte. Pour tester des noms de fichiers, saisissez un nom par ligne. Pour le contenu, chaque ligne est testée séparément.</li>
+            <li>Consultez le nombre de lignes et de correspondances. Les flèches parcourent les correspondances surlignées et affichent les groupes capturés. En cas d’erreur de syntaxe, <strong>Go to position</strong> place le curseur à l’endroit indiqué par le moteur.</li>
+            <li>Cliquez sur <strong>Use pattern</strong> pour appliquer le motif et les options de correspondance au champ d’origine sans lancer la recherche.</li>
+          </ol>
+          <p>Dans le panneau <strong>Syntax</strong>, cliquez sur un fragment .NET, comme <code>\d</code> pour un chiffre ou <code>\b</code> pour une limite de mot, pour l’insérer. <strong>Examples</strong> charge un motif et son échantillon. Utilisez <strong>Escape literal text</strong> pour insérer un texte exact dont les caractères spéciaux sont échappés.</p>
+        </section>
+        <section>
           <h2>Affiner les critères</h2>
           <p><strong>Include subfolders</strong> parcourt les sous-dossiers. <strong>Whole words</strong> limite la recherche de contenu aux mots entiers. Dans <strong>Options</strong>, réglez l’inclusion des fichiers masqués ou système, l’exclusion du contenu binaire et le nombre de workers (<code>0</code> pour le mode automatique).</p>
           <p>Dans <strong>Size &amp; Dates</strong>, les limites de taille sont strictes et exprimées en Ko de 1 024 octets. Saisissez les dates de création ou de modification au format <code>yyyy-MM-dd</code> ou choisissez-les dans le calendrier. Les jours renseignés sont inclus en entier.</p>
@@ -132,7 +142,9 @@
         </section>
         <section>
           <h2>Enregistrer ou exporter</h2>
-          <p><strong>Save search</strong> enregistre vos critères. <strong>Open…</strong> les recharge. Dans la liste de résultats, <strong>Export…</strong> produit un fichier CSV ou texte.</p>
+          <p><strong>Save search</strong> enregistre vos critères. <strong>Open…</strong> les recharge. Dans le volet des résultats, <strong>Export…</strong> est disponible dès qu’un résultat apparaît. Choisissez un fichier CSV, un fichier texte ou un rapport HTML.</p>
+          <p>Au-delà de 100 résultats, une boîte de dialogue affiche le total et le propose par défaut. Saisissez un entier compris entre 1 et ce total pour exporter uniquement les premières lignes, puis cliquez sur <strong>Continue</strong> pour choisir le fichier de destination.</p>
+          <p>Le rapport HTML est un fichier autonome en thème sombre. Il affiche la date et l’heure d’export avec le décalage UTC, ainsi que le nombre de résultats exportés sur le total, par exemple <strong>100 / 250 results exported</strong>. Les noms de fichiers sont des liens vers les fichiers d’origine. Pour une entrée ZIP, le lien pointe vers l’archive.</p>
         </section>
       </div>
     </article>
@@ -159,6 +171,16 @@
           </ul>
         </section>
         <section>
+          <h2>Test a regular expression</h2>
+          <ol>
+            <li>In <strong>Options</strong>, select <strong>Regular Expression</strong> for the file name or contents. Return to <strong>Main</strong> and click <strong>Test…</strong> next to the corresponding field.</li>
+            <li>Enter your pattern. Paste a sample or choose <strong>Load sample…</strong> to load a text file. When testing file names, enter one name per line. When testing contents, each line is checked separately.</li>
+            <li>Review the line and match counts. Use the arrows to move through highlighted matches and inspect captured groups. If the pattern has a syntax error, <strong>Go to position</strong> moves the cursor to the location reported by the regex engine.</li>
+            <li>Choose <strong>Use pattern</strong> to apply the pattern and matching options to the original field without starting a search.</li>
+          </ol>
+          <p>In the <strong>Syntax</strong> pane, click a .NET regex fragment such as <code>\d</code> for a digit or <code>\b</code> for a word boundary to insert it. <strong>Examples</strong> loads a pattern and sample. Use <strong>Escape literal text</strong> to insert exact text with its special characters escaped.</p>
+        </section>
+        <section>
           <h2>Narrow the search</h2>
           <p><strong>Include subfolders</strong> searches nested folders. <strong>Whole words</strong> limits content matches to whole words. In <strong>Options</strong>, control hidden and system files, binary content, and parallel search workers (<code>0</code> for automatic).</p>
           <p>In <strong>Size &amp; Dates</strong>, size limits are exclusive and use KB of 1,024 bytes. Enter creation or modification dates as <code>yyyy-MM-dd</code> or choose them from the calendar. The specified dates include the entire day.</p>
@@ -177,7 +199,9 @@
         </section>
         <section>
           <h2>Save or export</h2>
-          <p><strong>Save search</strong> stores your criteria. <strong>Open…</strong> loads them again. Choose <strong>Export…</strong> in the results pane to write the result list to a CSV or text file.</p>
+          <p><strong>Save search</strong> stores your criteria. <strong>Open…</strong> loads them again. <strong>Export…</strong> becomes available in the results pane as soon as a result appears. Choose a CSV file, a text file, or an HTML report.</p>
+          <p>When there are more than 100 results, a dialog shows the total and fills in that value by default. Enter a whole number from 1 to the total to export only the first rows, then click <strong>Continue</strong> to choose where to save the file.</p>
+          <p>The HTML report is a standalone file with a dark theme. It shows the export date and time with the UTC offset, and the number of exported results out of the total, for example <strong>100 / 250 results exported</strong>. File names link to the original files. For a ZIP entry, the link points to the archive.</p>
         </section>
       </div>
     </article>

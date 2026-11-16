@@ -60,7 +60,8 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty, NotifyCanExecuteChangedFor(nameof(StartCommand)), NotifyCanExecuteChangedFor(nameof(StopCommand)), NotifyCanExecuteChangedFor(nameof(PauseCommand)), NotifyCanExecuteChangedFor(nameof(NewSearchCommand))]
     private bool isSearching;
     [ObservableProperty, NotifyPropertyChangedFor(nameof(PauseLabel))] private bool isPaused;
-    [ObservableProperty] private bool hasResults;
+    [ObservableProperty, NotifyCanExecuteChangedFor(nameof(ExportCommand))]
+    private bool hasResults;
     [ObservableProperty] private string status = "Ready";
     [ObservableProperty] private string foundText = "0";
     [ObservableProperty] private string checkedText = "0";
@@ -87,6 +88,7 @@ public partial class MainViewModel : ObservableObject
     internal MainViewModel(SearchHistory history)
     {
         this.history = history;
+        Results.CollectionChanged += (_, _) => HasResults = Results.Count > 0;
         timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(SearchEngine.NotificationMilliseconds) };
         timer.Tick += (_, _) => PublishProgress();
     }
@@ -94,6 +96,30 @@ public partial class MainViewModel : ObservableObject
     private bool CanStart() => !IsSearching;
     private bool CanStop() => IsSearching;
     private bool HasSelection() => SelectedResult != null;
+
+    [RelayCommand]
+    private void EditRegex(string? target)
+    {
+        var fileNameTarget = target == "FileName";
+        if ((fileNameTarget ? NameMode : ContentMode) != "Regex") return;
+
+        var editor = new RegexEditorViewModel(fileNameTarget, fileNameTarget ? FileName : Content,
+            fileNameTarget ? NameCase : ContentCase, !fileNameTarget && WholeWord);
+        var dialog = new RegexEditorWindow(editor) { Owner = Application.Current.MainWindow };
+        if (dialog.ShowDialog() != true) return;
+
+        if (fileNameTarget)
+        {
+            FileName = editor.Pattern;
+            NameCase = editor.MatchCase;
+        }
+        else
+        {
+            Content = editor.Pattern;
+            ContentCase = editor.MatchCase;
+            WholeWord = editor.WholeWords;
+        }
+    }
 
     [RelayCommand(CanExecute = nameof(CanStart))]
     private async Task StartAsync()
@@ -110,7 +136,6 @@ public partial class MainViewModel : ObservableObject
         Results.Clear();
         pending.Clear();
         SelectedResult = null;
-        HasResults = false;
         PreviewTitle = "File preview";
         PreviewText = "Results will appear as matching files are found.";
         statistics = new SearchStatistics();
@@ -159,7 +184,6 @@ public partial class MainViewModel : ObservableObject
     private void PublishProgress()
     {
         for (var i = 0; i < 500 && pending.TryDequeue(out var result); i++) Results.Add(result);
-        HasResults = Results.Count > 0;
         FoundText = Interlocked.Read(ref statistics.Found).ToString("N0");
         CheckedText = Interlocked.Read(ref statistics.Checked).ToString("N0");
         SkippedText = Interlocked.Read(ref statistics.Skipped).ToString("N0");
@@ -277,18 +301,35 @@ public partial class MainViewModel : ObservableObject
         catch (Exception exception) { Status = exception.Message; }
     }
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(HasResults))]
     private void Export()
     {
-        var dialog = new SaveFileDialog { Title = "Export results", Filter = "CSV file|*.csv|Text file|*.txt", FileName = "XtraSearch-results.csv" };
+        var results = Results.ToArray();
+        var count = results.Length;
+        if (count > 100)
+        {
+            var limitDialog = new ExportLimitDialog(count) { Owner = Application.Current.MainWindow };
+            if (limitDialog.ShowDialog() != true) return;
+            count = limitDialog.ExportCount;
+        }
+
+        var dialog = new SaveFileDialog
+        {
+            Title = "Export results",
+            Filter = "CSV file|*.csv|HTML report|*.html|Text file|*.txt",
+            FileName = "XtraSearch-results"
+        };
         if (dialog.ShowDialog() != true) return;
         try
         {
-            static string Csv(string value) => "\"" + value.Replace("\"", "\"\"") + "\"";
-            using var writer = new StreamWriter(dialog.FileName, false, new UTF8Encoding(true));
-            writer.WriteLine("Name,Location,Bytes,Modified,Matching lines,Path");
-            foreach (var result in Results) writer.WriteLine($"{Csv(result.Name)},{Csv(result.Location)},{result.Bytes},{result.Modified:O},{result.Hits},{Csv(result.FullPath)}");
-            Status = $"Exported {Results.Count:N0} results";
+            var exportResults = new ArraySegment<SearchResult>(results, 0, count);
+            using (var writer = new StreamWriter(dialog.FileName, false, new UTF8Encoding(true)))
+            {
+                if (dialog.FilterIndex == 2)
+                    ResultsExport.WriteHtml(writer, exportResults, results.Length, DateTimeOffset.Now);
+                else ResultsExport.WriteCsv(writer, exportResults);
+            }
+            Status = $"Exported {count:N0} results";
         }
         catch (Exception exception) { Status = exception.Message; }
     }
@@ -333,7 +374,7 @@ public partial class MainViewModel : ObservableObject
         NameCase = ContentCase = WholeWord = LineByLine = SearchArchives = false;
         Subfolders = IncludeHidden = SkipBinary = true;
         MinimumSize = MaximumSize = ModifiedAfter = ModifiedBefore = CreatedAfter = CreatedBefore = "";
-        WorkerCount = "0"; Results.Clear(); HasResults = false; SelectedResult = null;
+        WorkerCount = "0"; Results.Clear(); SelectedResult = null;
         statistics = new SearchStatistics(); stopwatch.Reset(); PublishProgress();
         PreviewTitle = "File preview"; PreviewText = "Select a result to see its matching lines or a text preview."; Status = "Ready";
     }

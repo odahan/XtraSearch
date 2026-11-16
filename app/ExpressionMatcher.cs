@@ -28,9 +28,7 @@ public sealed class ExpressionMatcher
                 "Boolean" when !quoted => Regex.Escape(term).Replace("\\*", "\\w*").Replace("\\?", "\\w"),
                 _ => Regex.Escape(term)
             };
-            if (wholeWord) pattern = "(?<!\\w)(?:" + pattern + ")(?!\\w)";
-            var regex = new Regex(pattern, RegexOptions.Compiled | RegexOptions.CultureInvariant |
-                (matchCase ? RegexOptions.None : RegexOptions.IgnoreCase), RegexTimeout);
+            var regex = CreateRegex(pattern, matchCase, wholeWord);
             return regex.IsMatch;
         };
 
@@ -101,6 +99,15 @@ public sealed class ExpressionMatcher
     }
 
     public bool[] CreateState() => new bool[terms.Count];
+
+    /// <summary>Creates a regex with the matching rules shared by search and the editor.</summary>
+    internal static Regex CreateRegex(string pattern, bool matchCase, bool wholeWord, bool compile = true)
+    {
+        if (wholeWord) pattern = "(?<!\\w)(?:" + pattern + ")(?!\\w)";
+        var options = RegexOptions.CultureInvariant | (matchCase ? RegexOptions.None : RegexOptions.IgnoreCase);
+        if (compile) options |= RegexOptions.Compiled;
+        return new Regex(pattern, options, RegexTimeout);
+    }
 
     public bool Feed(string line, bool[] state)
     {

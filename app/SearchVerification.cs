@@ -99,8 +99,10 @@ public static class SearchVerification
         var historyPath = Path.Combine(root, "history.json");
         var history = new SearchHistory(historyPath);
         var viewModel = new MainViewModel(history) { Locations = root, FileName = "alpha.txt", Content = "alpha", WorkerCount = "2" };
+        Assert(!viewModel.ExportCommand.CanExecute(null), "Export is disabled before results arrive");
         await viewModel.StartCommand.ExecuteAsync(null);
         Assert(viewModel.Results.Count == 1 && viewModel.HasResults && !viewModel.IsSearching, "MVVM search command publishes actual results");
+        Assert(viewModel.ExportCommand.CanExecute(null), "Export is enabled when results arrive");
         Assert(viewModel.SearchThreads == 2 && !viewModel.ShowSearchThreads, "Parallel content search exposes its worker count with the pane initially hidden");
         viewModel.ShowSearchThreads = true;
         Assert(viewModel.WorkerRows.Single() is { Name: "alpha.txt", Lines: 4, State: "Idle" }, "The worker pane reports the scanned file and its line count");
@@ -114,6 +116,45 @@ public static class SearchVerification
             "Search history keeps ten unique entries and moves reused values to the top");
         viewModel.SelectedResult = viewModel.Results[0];
         Assert(viewModel.PreviewText.Contains("alpha") && viewModel.OpenFileCommand.CanExecute(null), "Selected result exposes preview and open command");
+        viewModel.NewSearchCommand.Execute(null);
+        Assert(!viewModel.ExportCommand.CanExecute(null), "Export is disabled when results are cleared");
+
+        var regexPreview = RegexEditorViewModel.Evaluate(@"Invoice\s+(?<number>\d+)",
+            "invoice 42 and Invoice 43\r\nDraft\nInvoice 99", matchCase: false, wholeWords: false, isFileName: false);
+        Assert(regexPreview.Message == "2 matching lines · 3 matches" &&
+               regexPreview.Occurrences is [{ Start: 0, Groups: "number = 42" }, _, { Line: 3, Start: 33 }],
+            "Regex editor counts lines, matches and named groups across different line endings");
+        var fileNamePreview = RegexEditorViewModel.Evaluate(@"\.pdf$", "Report.PDF\r\nreport.pdf\r\nreport.pdf.bak",
+            matchCase: true, wholeWords: false, isFileName: true);
+        Assert(fileNamePreview.Occurrences is [{ Line: 2 }], "Regex editor tests complete file names with search case settings");
+        var wholeWordPreview = RegexEditorViewModel.Evaluate("cat", "concatenate cat",
+            matchCase: false, wholeWords: true, isFileName: false);
+        Assert(wholeWordPreview.Occurrences is [{ Start: 12 }], "Regex editor shares the search whole-word matching rules");
+        var invalidPreview = RegexEditorViewModel.Evaluate("(", "sample", matchCase: false, wholeWords: false, isFileName: false);
+        Assert(!invalidPreview.CanApply && invalidPreview.ErrorOffset == 1,
+            "Regex editor identifies invalid syntax and reports the parser offset");
+        var regexEditor = new RegexEditorWindow(new RegexEditorViewModel(false, @"\d+", true, false));
+        Assert(regexEditor.FindName("PatternInput") is System.Windows.Controls.TextBox &&
+               regexEditor.FindName("HighlightedSample") is System.Windows.Controls.TextBlock,
+            "The themed regex editor loads its WPF controls");
+        regexEditor.Close();
+
+        using var html = new StringWriter();
+        SearchResult[] exportResults =
+        [
+            new("A & B.txt", @"C:\Test", 12, DateTime.UnixEpoch, 2, "", @"C:\Test\A & B # %20.txt"),
+            new("inside.txt", @"\\server\share", 3, DateTime.UnixEpoch, 1, "", @"\\server\share\pack.zip|inside.txt")
+        ];
+        var exportedAt = new DateTimeOffset(2026, 11, 16, 14, 30, 45, TimeSpan.FromHours(1));
+        ResultsExport.WriteHtml(html, exportResults, 150, exportedAt);
+        var report = html.ToString();
+        Assert(report.Contains("<time datetime=\"2026-11-16T14:30:45.0000000+01:00\">2026-11-16 14:30:45 +01:00</time>") &&
+               report.Contains("2 / 150 results exported"),
+            "HTML export shows the export timestamp and the exported count out of the original total");
+        Assert(report.Contains("color-scheme: dark") &&
+               report.Contains("href=\"file:///C:/Test/A%20%26%20B%20%23%20%2520.txt\">A &amp; B.txt</a>") &&
+               report.Contains("href=\"file://server/share/pack.zip\">inside.txt</a>"),
+            "HTML export uses dark styling and escapes file links, including links to containing archives");
         viewModel.Shutdown();
         File.WriteAllText("verification-results.json", JsonSerializer.Serialize(new
         {

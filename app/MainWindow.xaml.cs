@@ -37,12 +37,15 @@ public partial class MainWindow : Window
             };
             Loaded += (_, _) => StartCapture();
         }
-        else SourceInitialized += (_, _) =>
-        {
-            var enabled = 1;
-            DwmSetWindowAttribute(new WindowInteropHelper(this).Handle, 20, ref enabled, sizeof(int));
-        };
+        else SourceInitialized += (_, _) => EnableDarkTitleBar(this);
         Closed += (_, _) => viewModel.Shutdown();
+    }
+
+    /// <summary>Applies the application theme to a window's native title bar.</summary>
+    internal static void EnableDarkTitleBar(Window window)
+    {
+        var enabled = 1;
+        DwmSetWindowAttribute(new WindowInteropHelper(window).Handle, 20, ref enabled, sizeof(int));
     }
 
     private void StartCapture()

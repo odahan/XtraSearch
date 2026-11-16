@@ -50,13 +50,43 @@
                                 <ColumnDefinition Width="98"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="File name" VerticalAlignment="Center"/>
-                            <ComboBox Grid.Column="1" Grid.ColumnSpan="2" IsEditable="True" IsTextSearchEnabled="False"
+                            <DockPanel Grid.Column="1" Grid.ColumnSpan="2">
+                                <Button DockPanel.Dock="Right" Content="Test…" Command="{Binding EditRegexCommand}" CommandParameter="FileName"
+                                        Margin="8,4,0,4" Padding="11,5" AutomationProperties.Name="Test file name regular expression">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding NameMode}" Value="Regex">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <ComboBox IsEditable="True" IsTextSearchEnabled="False"
                  Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding FileNameHistory}"
                  Margin="0,4,0,4" ToolTip="For example: *.txt;*.log" AutomationProperties.Name="File name"/>
+                            </DockPanel>
                             <TextBlock Grid.Row="1" Text="Containing text" VerticalAlignment="Center"/>
-                            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEditable="True" IsTextSearchEnabled="False"
+                            <DockPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                                <Button DockPanel.Dock="Right" Content="Test…" Command="{Binding EditRegexCommand}" CommandParameter="Content"
+                                        Margin="8,4,0,4" Padding="11,5" AutomationProperties.Name="Test contents regular expression">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ContentMode}" Value="Regex">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <ComboBox IsEditable="True" IsTextSearchEnabled="False"
                  Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding ContentHistory}"
                  Margin="0,4,0,4" ToolTip="Leave empty to search by file name only" AutomationProperties.Name="Containing text"/>
+                            </DockPanel>
                             <TextBlock Grid.Row="2" Text="Look in" VerticalAlignment="Center"/>
                             <ComboBox Grid.Row="2" Grid.Column="1" IsEditable="True" IsTextSearchEnabled="False"
                  Text="{Binding Locations, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding LocationHistory}"
@@ -158,7 +188,7 @@
                         <Button Content="{Binding PauseLabel}" Command="{Binding PauseCommand}" Padding="4,8"/>
                         <Button Grid.Column="2" Content="Stop" Command="{Binding StopCommand}" Padding="4,8"/>
                     </Grid>
-                    <TextBlock Text="Ctrl+Enter or F5 to search · Esc to stop" Foreground="#8598B1" FontSize="10" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+                    <TextBlock Foreground="#8598B1" FontSize="10" HorizontalAlignment="Center" Margin="0,12,0,0">Ctrl+Enter or F5 to search<LineBreak/>Esc to stop</TextBlock>
                 </StackPanel>
             </Grid>
         </Border>
