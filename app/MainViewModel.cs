@@ -15,6 +15,7 @@ namespace XtraSearch;
 /// <summary>Coordinates search commands and publishes batched worker results to WPF.</summary>
 public partial class MainViewModel : ObservableObject
 {
+    private const int BytesPerKilobyte = 1024;
     private readonly ConcurrentQueue<SearchResult> pending = new();
     private readonly ManualResetEventSlim pause = new(true);
     private readonly DispatcherTimer timer;
@@ -34,6 +35,7 @@ public partial class MainViewModel : ObservableObject
         [new("Boolean", "Boolean"), new("Regex", "Regular Expression"), new("Wildcard", "Wildcards")];
     public ObservableCollection<SearchModeChoice> ContentModes { get; } =
         [new("Boolean", "Boolean"), new("Regex", "Regular Expression")];
+    public IReadOnlyList<string> SizeUnits { get; } = ["KB", "MB", "GB"];
     [ObservableProperty] private string fileName = "*";
     [ObservableProperty] private string content = "";
     [ObservableProperty] private string locations = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -49,6 +51,7 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private bool searchArchives;
     [ObservableProperty] private string minimumSize = "";
     [ObservableProperty] private string maximumSize = "";
+    [ObservableProperty] private string sizeUnit = "KB";
     [ObservableProperty] private string modifiedAfter = "";
     [ObservableProperty] private string modifiedBefore = "";
     [ObservableProperty] private string createdAfter = "";
@@ -223,12 +226,21 @@ public partial class MainViewModel : ObservableObject
 
     public SearchOptions CaptureOptions()
     {
-        static long? Size(string text)
+        long? Size(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) return null;
-            if (!double.TryParse(text, NumberStyles.Number, CultureInfo.InvariantCulture, out var size) || size < 0 || !double.IsFinite(size) || size > long.MaxValue / 1024d)
-                throw new ArgumentException("Enter a positive file size in KB (use a dot for decimals).");
-            return (long)(size * 1024);
+            var bytesPerUnit = SizeUnit switch
+            {
+                "MB" => BytesPerKilobyte * BytesPerKilobyte,
+                "GB" => BytesPerKilobyte * BytesPerKilobyte * BytesPerKilobyte,
+                _ => BytesPerKilobyte
+            };
+            if (!decimal.TryParse(text, NumberStyles.Number, CultureInfo.InvariantCulture, out var size) || size < 0 || size > long.MaxValue)
+                throw new ArgumentException($"Enter a non-negative file size in {SizeUnit} (use a dot for decimals).");
+            var bytes = decimal.Truncate(size * bytesPerUnit);
+            if (bytes > long.MaxValue)
+                throw new ArgumentException("The file size exceeds the supported limit.");
+            return (long)bytes;
         }
         static DateTime? Date(string text)
         {
@@ -357,8 +369,9 @@ public partial class MainViewModel : ObservableObject
             NameMode = options.NameMode; ContentMode = options.ContentMode; NameCase = options.NameCase; ContentCase = options.ContentCase;
             Subfolders = options.Subfolders; WholeWord = options.WholeWord; LineByLine = options.LineByLine;
             IncludeHidden = options.IncludeHidden; SkipBinary = options.SkipBinary; SearchArchives = options.SearchArchives;
-            MinimumSize = options.MinimumBytes.HasValue ? (options.MinimumBytes.Value / 1024d).ToString(CultureInfo.InvariantCulture) : "";
-            MaximumSize = options.MaximumBytes.HasValue ? (options.MaximumBytes.Value / 1024d).ToString(CultureInfo.InvariantCulture) : "";
+            SizeUnit = "KB";
+            MinimumSize = (options.MinimumBytes / (decimal)BytesPerKilobyte)?.ToString(CultureInfo.InvariantCulture) ?? "";
+            MaximumSize = (options.MaximumBytes / (decimal)BytesPerKilobyte)?.ToString(CultureInfo.InvariantCulture) ?? "";
             ModifiedAfter = options.ModifiedAfter?.ToString("yyyy-MM-dd") ?? ""; ModifiedBefore = options.ModifiedBefore?.ToString("yyyy-MM-dd") ?? "";
             CreatedAfter = options.CreatedAfter?.ToString("yyyy-MM-dd") ?? ""; CreatedBefore = options.CreatedBefore?.ToString("yyyy-MM-dd") ?? "";
             WorkerCount = options.Workers.ToString(); Status = "Search loaded";
@@ -374,6 +387,7 @@ public partial class MainViewModel : ObservableObject
         NameCase = ContentCase = WholeWord = LineByLine = SearchArchives = false;
         Subfolders = IncludeHidden = SkipBinary = true;
         MinimumSize = MaximumSize = ModifiedAfter = ModifiedBefore = CreatedAfter = CreatedBefore = "";
+        SizeUnit = "KB";
         WorkerCount = "0"; Results.Clear(); SelectedResult = null;
         statistics = new SearchStatistics(); stopwatch.Reset(); PublishProgress();
         PreviewTitle = "File preview"; PreviewText = "Select a result to see its matching lines or a text preview."; Status = "Ready";

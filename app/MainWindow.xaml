@@ -113,11 +113,24 @@
                                 <ColumnDefinition Width="65"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Size (KB)" VerticalAlignment="Center"/>
+                            <TextBlock Text="Size" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" Text="&gt;" VerticalAlignment="Center"/>
-                            <TextBox Grid.Column="2" Text="{Binding MinimumSize}" Margin="0,4" ToolTip="Minimum, exclusive"/>
-                            <TextBlock Grid.Column="3" Text="&lt;" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBox Grid.Column="4" Text="{Binding MaximumSize}" Margin="0,4" ToolTip="Maximum, exclusive"/>
+                            <Grid Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="12"/>
+                                    <ColumnDefinition Width="76"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Text="{Binding MinimumSize, UpdateSourceTrigger=PropertyChanged}" Margin="0,4"
+                                         ToolTip="Minimum, exclusive" AutomationProperties.Name="Minimum file size"/>
+                                <TextBlock Grid.Column="1" Text="&lt;" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="2" Text="{Binding MaximumSize, UpdateSourceTrigger=PropertyChanged}" Margin="0,4"
+                                         ToolTip="Maximum, exclusive" AutomationProperties.Name="Maximum file size"/>
+                                <ComboBox Grid.Column="4" ItemsSource="{Binding SizeUnits}" SelectedItem="{Binding SizeUnit}"
+                                          Margin="0,4" ToolTip="Unit for both size limits" AutomationProperties.Name="File size unit"/>
+                            </Grid>
                             <TextBlock Grid.Row="1" Text="Modified" VerticalAlignment="Center"/>
                             <TextBlock Grid.Row="1" Grid.Column="1" Text="From" FontSize="11" VerticalAlignment="Center"/>
                             <local:DateFilterBox Grid.Row="1" Grid.Column="2" Text="{Binding ModifiedAfter}" Margin="0,4" AutomationProperties.Name="Modified from"/>

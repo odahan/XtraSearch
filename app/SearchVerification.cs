@@ -99,6 +99,16 @@ public static class SearchVerification
         var historyPath = Path.Combine(root, "history.json");
         var history = new SearchHistory(historyPath);
         var viewModel = new MainViewModel(history) { Locations = root, FileName = "alpha.txt", Content = "alpha", WorkerCount = "2" };
+        viewModel.MinimumSize = "1.5";
+        viewModel.MaximumSize = "2";
+        foreach (var (unit, bytesPerUnit) in new[] { ("KB", 1024L), ("MB", 1048576L), ("GB", 1073741824L) })
+        {
+            viewModel.SizeUnit = unit;
+            var sizeOptions = viewModel.CaptureOptions();
+            Assert(sizeOptions.MinimumBytes == bytesPerUnit * 3 / 2 && sizeOptions.MaximumBytes == bytesPerUnit * 2,
+                $"Both size limits use the selected {unit} unit and accept decimals");
+        }
+        viewModel.MinimumSize = viewModel.MaximumSize = "";
         Assert(!viewModel.ExportCommand.CanExecute(null), "Export is disabled before results arrive");
         await viewModel.StartCommand.ExecuteAsync(null);
         Assert(viewModel.Results.Count == 1 && viewModel.HasResults && !viewModel.IsSearching, "MVVM search command publishes actual results");
@@ -117,6 +127,7 @@ public static class SearchVerification
         viewModel.SelectedResult = viewModel.Results[0];
         Assert(viewModel.PreviewText.Contains("alpha") && viewModel.OpenFileCommand.CanExecute(null), "Selected result exposes preview and open command");
         viewModel.NewSearchCommand.Execute(null);
+        Assert(viewModel.SizeUnit == "KB", "A new search defaults to KB");
         Assert(!viewModel.ExportCommand.CanExecute(null), "Export is disabled when results are cleared");
 
         var regexPreview = RegexEditorViewModel.Evaluate(@"Invoice\s+(?<number>\d+)",
